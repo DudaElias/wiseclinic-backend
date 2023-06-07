@@ -7,7 +7,8 @@ Projeto Final de Programação Orientada a Objetos Back-end
 @startuml
     scale 650 width
     skinparam linetype ortho
-    
+    !theme sandstone
+
     class Paciente{
         - cpf: String
         - nome: String
@@ -77,14 +78,39 @@ Projeto Final de Programação Orientada a Objetos Back-end
     }
 
     class Agenda{
-        -{field} dias(horario: boolean)
+        -{field} dias: List<List<Map<string, boolean>>>
         +gets/sets()
     }
 
     enum Convenio{
+        -SULAMERICA
+        -AMIL
+        -BRADESCO
+        -UNIMED
+        __
+        nome: String
+        chave: int
     }
 
-    enum Especialidade{
+    enum EspecialidadeMedica{
+        -ALERGOLOGIA
+        -CARDIOLOGIA
+        -DERMATOLOGIA
+        -NEUROLOGIA
+        -OFTALMOLOGIA
+        -PEDIATRIA
+        __
+        nome: String
+        codigo: int
+    }
+
+    enum EspecialidadeDentista{
+        -ORTODONTIA
+        -PERIODONTIA
+        -ODONTOPEDIATRIA
+        __
+        nome: String
+        codigo: int
     }
 
     Profissional <|-- Medico
@@ -100,8 +126,8 @@ Projeto Final de Programação Orientada a Objetos Back-end
     Medico o---> "0..*  " ConsultaMedica
     Dentista o--> " 0..*" ConsultaOdontologica
 
-    Medico --> "1..*" Especialidade
-    Dentista --> "1..*   " Especialidade
+    Medico --> "1..*" EspecialidadeMedica
+    Dentista --> "1..*   " EspecialidadeDentista
 
     
     Profissional --> "1 " Agenda
