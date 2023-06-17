@@ -2,13 +2,19 @@ package com.unicamp.wiseclinic.domain.dentista;
 
 import java.util.List;
 
+import com.unicamp.wiseclinic.domain.agenda.Agenda;
+import com.unicamp.wiseclinic.domain.consulta.Consulta;
 import com.unicamp.wiseclinic.domain.especialidade.EspecialidadeDentista;
+import com.unicamp.wiseclinic.domain.profissional.Profissional;
 
-public class Dentista {
+public class Dentista extends Profissional {
     private String cro;
     private List<EspecialidadeDentista> especialidades;
 
-    //construtor
+    public Dentista(String cro, Agenda agenda, String nome, String cpf, String email) {
+        super(agenda, nome, cpf, email);
+        this.cro = cro;
+    }
 
     public String getCro() {
         return cro;
@@ -28,5 +34,10 @@ public class Dentista {
 
     public void adicionarEspecialidade(EspecialidadeDentista especialidade) {
         especialidades.add(especialidade);
+    }
+
+    public boolean agendarConsulta(Consulta consulta){
+        //TODO: IMPLEMENTAR METODO
+        return true;
     }
 }
