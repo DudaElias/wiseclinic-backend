@@ -14,11 +14,11 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("io.projectreactor:reactor-test")
 	implementation("com.fasterxml.jackson.core:jackson-core:2.6.3")
 	implementation("com.fasterxml.jackson.core:jackson-annotations:2.6.3")
 	implementation("com.fasterxml.jackson.core:jackson-databind:2.6.3")
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("io.projectreactor:reactor-test")
 }
 
 tasks.withType<Test> {
