@@ -5,7 +5,7 @@ Projeto Final de Programação Orientada a Objetos Back-end
 
 ```plantuml
 @startuml
-    scale 650 width
+    scale 700 width
     skinparam linetype ortho
     !theme sandstone
 
@@ -17,16 +17,16 @@ Projeto Final de Programação Orientada a Objetos Back-end
         - telefone: String
         - genero: String
         - dataNasc: LocalDate
-        - {field} convenio: Convenio
-        - listaConsulta: ArrayList
+        - convenio: Convenio
+        - listaConsulta: List<Consulta>
         + agendarConsulta(*)
         + cancelarConsulta(*)
         + gets/sets()
     }
 
-    interface Consulta{
+    abstract class Consulta{
         -paciente: Paciente
-        -{field}horario: LocalDate
+        -horario: LocalDateTime
         -checkIn: boolean
         -id: int
         +trocarProfissional(*)
@@ -37,6 +37,7 @@ Projeto Final de Programação Orientada a Objetos Back-end
 
     class ConsultaMedica{
         -medico: Medico
+        -especialidade: EspecialidadeMedica
         +trocarProfissional(*)
         +trocarHorario(*)
         +checkInPaciente(*)
@@ -45,6 +46,7 @@ Projeto Final de Programação Orientada a Objetos Back-end
 
     class ConsultaOdontologica{
         -dentista: Dentista
+        -especialidade: EspecialidadeDentista
         +trocarProfissional(*)
         +trocarHorario(*)
         +checkInPaciente(*)
@@ -56,8 +58,7 @@ Projeto Final de Programação Orientada a Objetos Back-end
         -nome: String
         -cpf: String
         -email: String
-        -listaConsulta: ArrayList
-        +atualizarAgenda(*)
+        -listaConsulta: List<Consulta>
         +agendarConsulta(*)
         +cancelarConsulta(*)
         +gets/sets()
@@ -65,21 +66,35 @@ Projeto Final de Programação Orientada a Objetos Back-end
 
     class Dentista{
         -cro: String
-        -especialidades: ArrayList
+        -especialidades: List<EspecialidadeDentista>
         +adicionarEspecialidade(*)
+        +agendarConsulta(*)
+        +cancelarConsulta(*)
         +gets/sets()
     }
 
     class Medico{
         -crm: String
-        -especialidades: ArrayList
+        -especialidades: List<EspecialidadeMedica>
         +adicionarEspecialidade(*)
+        +agendarConsulta(*)
+        +cancelarConsulta(*)
         +gets/sets()
     }
 
     class Agenda{
-        -{field} dias: List<List<Map<string, boolean>>>
-        +gets/sets()
+        -horariosDisponiveis: Map<LocalDateTime, Integer>
+        +liberarHorario(*)
+        +ocuparHorario(*)
+        +isHorarioOcupado(*)
+        +filtrarHorario(*)
+        +gets()
+        
+    }
+
+    interface GerenciadorConsulta{
+        + agendarConsulta(*)
+        + cancelarConsulta(*)
     }
 
     enum Convenio{
@@ -113,24 +128,33 @@ Projeto Final de Programação Orientada a Objetos Back-end
         codigo: int
     }
 
+
+
+
     Profissional <|-- Medico
     Profissional <|-- Dentista
 
-    Consulta <|.. ConsultaOdontologica
-    Consulta <|.. ConsultaMedica
+    Consulta <|-- ConsultaOdontologica
+    Consulta <|-- ConsultaMedica
 
-    Paciente --> "0..1 " Convenio
-    Paciente "0..* " *-->  ConsultaMedica
-    Paciente *---> "0..* " ConsultaOdontologica
+    Profissional ..|> GerenciadorConsulta
+    Paciente ..|> GerenciadorConsulta
 
-    Medico o---> "0..*  " ConsultaMedica
-    Dentista o--> " 0..*" ConsultaOdontologica
+    Paciente --> "0..1" Convenio
+    Paciente *--> "0..*"  ConsultaMedica
+    Paciente *--> "0..* " ConsultaOdontologica
+
+    Medico o--> "0..* " ConsultaMedica
+    Dentista o--> "0..*" ConsultaOdontologica
 
     Medico --> "1..*" EspecialidadeMedica
-    Dentista --> "1..*   " EspecialidadeDentista
+    Dentista --> "1..*" EspecialidadeDentista
+
+    ConsultaMedica --> EspecialidadeMedica
+    ConsultaOdontologica --> EspecialidadeDentista
 
     
-    Profissional --> "1 " Agenda
+    Profissional --> "1" Agenda
 
 }
 @enduml
