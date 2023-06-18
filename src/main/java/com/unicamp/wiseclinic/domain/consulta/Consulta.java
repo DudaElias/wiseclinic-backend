@@ -11,6 +11,13 @@ public abstract class Consulta {
     protected LocalDateTime horario;
     protected boolean checkIn;
 
+    public Consulta(int id, Paciente paciente, LocalDateTime horario, boolean checkIn) {
+        this.id = id;
+        this.paciente = paciente;
+        this.horario = horario;
+        this.checkIn = checkIn;
+    }
+    
     public int getId() {
         return id;
     }
