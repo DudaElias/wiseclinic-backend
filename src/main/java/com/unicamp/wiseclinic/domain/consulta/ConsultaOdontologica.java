@@ -11,7 +11,7 @@ public class ConsultaOdontologica extends Consulta{
     private Dentista dentista;
     private EspecialidadeDentista especialidade;
 
-    public ConsultaDentista(Dentista dentista, EspecialidadeDentista especialidade, int id, Paciente paciente, LocalDateTime horario, boolean checkIn) {
+    public ConsultaOdontologica(Dentista dentista, EspecialidadeDentista especialidade, int id, Paciente paciente, LocalDateTime horario, boolean checkIn) {
         super(id, paciente, horario, checkIn);
         this.dentista = dentista;
         this.especialidade = especialidade;
