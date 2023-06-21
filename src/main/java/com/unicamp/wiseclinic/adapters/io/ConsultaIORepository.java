@@ -5,7 +5,6 @@ import com.unicamp.wiseclinic.domain.consulta.Consulta;
 import com.unicamp.wiseclinic.domain.consulta.ConsultaRepository;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +25,7 @@ public class ConsultaIORepository implements ConsultaRepository {
     }
 
     @Override
-    public List<Consulta> getConsultasPorHorario(LocalDateTime horario) throws IOException {
+    public List<Consulta> getConsultasPorHorario(LocalDateTime horario) throws Exception {
         List<Consulta> consultas = Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consulta()), Consulta[].class));
 
         return consultas.stream()
