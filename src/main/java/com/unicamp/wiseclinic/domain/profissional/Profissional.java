@@ -42,6 +42,8 @@ public abstract class Profissional implements GerenciadorConsulta {
         return listaConsulta;
     }
 
+    public Agenda getAgenda() { return agenda; }
+
     public abstract boolean agendarConsulta(Consulta consulta);
     
     public boolean cancelarConsulta(int id) {
