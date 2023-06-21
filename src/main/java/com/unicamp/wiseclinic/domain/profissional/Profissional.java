@@ -14,6 +14,10 @@ public abstract class Profissional implements GerenciadorConsulta {
     private String email;
     private List<Consulta> listaConsulta;
 
+    public Profissional() {
+
+    }
+
     public Profissional(Agenda agenda, String nome, String cpf, String email) {
         this.agenda = agenda;
         this.nome = nome;
@@ -21,7 +25,7 @@ public abstract class Profissional implements GerenciadorConsulta {
         this.email = email;
         listaConsulta = new ArrayList<Consulta>();
     }
-    
+
     public String getNome() {
         return nome;
     }
