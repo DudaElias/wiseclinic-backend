@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Service
-public class DentistaServiceImpl implements DentistaService{
+public class DentistaServiceImpl implements DentistaService {
     private final DentistaRepository dentistaRepository;
 
     public DentistaServiceImpl(DentistaRepository dentistaRepository) {
