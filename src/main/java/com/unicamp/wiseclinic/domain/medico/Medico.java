@@ -11,6 +11,11 @@ public class Medico extends Profissional{
     private String crm;
     private List<EspecialidadeMedica> especialidades;
 
+    public Medico(String crm) {
+        super();
+        this.crm = crm;
+    }
+
     public Medico(String crm, Agenda agenda, String nome, String cpf, String email){
         super(agenda, nome, cpf, email);
         this.crm = crm;

@@ -6,6 +6,10 @@ import com.unicamp.wiseclinic.domain.consulta.Consulta;
 import com.unicamp.wiseclinic.domain.consulta.ConsultaRepository;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Service
 public class ConsultaServiceImpl implements ConsultaService {
 
@@ -22,5 +26,10 @@ public class ConsultaServiceImpl implements ConsultaService {
         consultaRepository.salvar(consulta);
 
         return consulta;
+    }
+
+    @Override
+    public List<Consulta> getConsultasPorHorario(LocalDateTime horario) throws IOException {
+        return consultaRepository.getConsultasPorHorario(horario);
     }
 }

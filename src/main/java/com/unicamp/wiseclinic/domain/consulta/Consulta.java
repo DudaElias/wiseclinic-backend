@@ -1,10 +1,19 @@
 package com.unicamp.wiseclinic.domain.consulta;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.unicamp.wiseclinic.domain.paciente.Paciente;
 import com.unicamp.wiseclinic.domain.profissional.Profissional;
 
 import java.time.LocalDateTime;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = ConsultaMedica.class, name = "ConsultaMedica"),
+        @JsonSubTypes.Type(value = ConsultaOdontologica.class, name = "ConsultaOdontologica")
+})
 public abstract class Consulta {
     protected int id;
     protected Paciente paciente;

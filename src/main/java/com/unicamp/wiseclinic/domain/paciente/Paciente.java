@@ -19,6 +19,10 @@ public class Paciente implements GerenciadorConsulta {
     protected Convenio convenio;
     protected List<Consulta> listaConsulta;
 
+    public Paciente(String cpf) {
+        this.cpf = cpf;
+    }
+
     public Paciente(String cpf, String nome, String endereco, String email, String telefone, String genero, LocalDate dataNascimento, Convenio convenio) {
         this.cpf = cpf;
         this.nome = nome;
