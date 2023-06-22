@@ -11,8 +11,12 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 
+
+import java.time.LocalDateTime;
+import java.util.Map;
+
 @Service
-public class MedicoServiceImpl implements MedicoService {
+public class MedicoServiceImpl implements MedicoService{
     private final MedicoRepository medicoRepository;
 
     public MedicoServiceImpl(MedicoRepository medicoRepository) {
@@ -22,5 +26,10 @@ public class MedicoServiceImpl implements MedicoService {
     @Override
     public List<Medico> getMedicosPorEspecialidade(EspecialidadeMedica especialidadeMedica) throws IOException {
         return medicoRepository.getMedicos(especialidadeMedica);
+    }
+
+    @Override
+    public Map<LocalDateTime, Integer> getHorariosDisponiveis(String crm) throws Exception {
+        return medicoRepository.getHorariosDisponiveis(crm);
     }
 }

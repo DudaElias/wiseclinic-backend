@@ -1,9 +1,6 @@
 package com.unicamp.wiseclinic.adapters.io;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.unicamp.wiseclinic.adapters.io.ClasspathUtils;
-import com.unicamp.wiseclinic.adapters.io.IOProperties;
-import com.unicamp.wiseclinic.domain.dentista.Dentista;
 import com.unicamp.wiseclinic.domain.especialidade.EspecialidadeMedica;
 import com.unicamp.wiseclinic.domain.medico.Medico;
 import com.unicamp.wiseclinic.domain.medico.MedicoRepository;
@@ -13,11 +10,12 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.util.Map;
 
 @Component
 @EnableConfigurationProperties(IOProperties.class)
 public class MedicoIORepository implements MedicoRepository {
-
     private ObjectMapper objectMapper;
     private IOProperties ioProperties;
 
@@ -37,5 +35,16 @@ public class MedicoIORepository implements MedicoRepository {
                 .toList();
     }
 
+
+    public Map<LocalDateTime, Integer> getHorariosDisponiveis(String crm) throws Exception {
+        List<Medico> medicos = Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.medico()), Medico[].class));
+        for(Medico medico : medicos){
+            if(medico.getCrm().equals(crm)){
+                return medico.getAgenda().getHorariosDisponiveis();
+            }
+        }
+        throw new Exception();
+
+    }
 
 }
