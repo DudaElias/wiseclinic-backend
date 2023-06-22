@@ -12,5 +12,5 @@ public interface DentistaService {
 
     List<Dentista> getDentistasPorEspecialidade(EspecialidadeDentista especialidadeDentista) throws IOException;
 
-    public Map<LocalDateTime, Integer> getHorariosDisponiveis(String cro) throws IOException;
+    public Map<LocalDateTime, Integer> getHorariosDisponiveis(String cro) throws Exception;
 }

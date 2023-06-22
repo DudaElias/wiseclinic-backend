@@ -37,14 +37,14 @@ public class DentistaIORepository implements DentistaRepository {
     }
 
     @Override
-    public Map<LocalDateTime, Integer> getHorariosDisponiveis(String cro) throws IOException{
+    public Map<LocalDateTime, Integer> getHorariosDisponiveis(String cro) throws Exception{
         List<Dentista> dentistas = Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.dentista()), Dentista[].class));
         for(Dentista dentista : dentistas){
             if(dentista.getCro().equals(cro)){
                 return dentista.getAgenda().getHorariosDisponiveis();
             }
         }
-        return null;
+        throw new Exception();
 
     }
 

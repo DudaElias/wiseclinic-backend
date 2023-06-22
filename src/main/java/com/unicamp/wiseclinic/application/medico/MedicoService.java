@@ -6,5 +6,5 @@ import java.util.Map;
 
 public interface MedicoService {
 
-    public Map<LocalDateTime, Integer> getHorariosDisponiveis(String crm) throws IOException;
+    public Map<LocalDateTime, Integer> getHorariosDisponiveis(String crm) throws Exception;
 }

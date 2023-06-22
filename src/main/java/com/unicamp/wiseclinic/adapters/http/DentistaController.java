@@ -31,7 +31,7 @@ public class DentistaController {
     }
 
     @GetMapping(value = "/agenda/{cro}")
-    Map<LocalDateTime, Integer> getHorariosDisponiveis(@PathVariable("cro") String cro) throws IOException {
+    Map<LocalDateTime, Integer> getHorariosDisponiveis(@PathVariable("cro") String cro) throws Exception {
         return dentistaService.getHorariosDisponiveis(cro);
     }
 }

@@ -24,7 +24,7 @@ public class DentistaServiceImpl implements DentistaService {
     }
 
     @Override
-    public Map<LocalDateTime, Integer> getHorariosDisponiveis(String cro) throws IOException{
+    public Map<LocalDateTime, Integer> getHorariosDisponiveis(String cro) throws Exception{
         return dentistaRepository.getHorariosDisponiveis(cro);
     }
 }

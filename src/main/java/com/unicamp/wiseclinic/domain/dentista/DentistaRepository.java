@@ -10,5 +10,5 @@ import java.util.Map;
 public interface DentistaRepository {
     List<Dentista> getDentistas(EspecialidadeDentista especialidadeDentista) throws IOException;
 
-    Map<LocalDateTime, Integer> getHorariosDisponiveis(String cro) throws IOException;
+    Map<LocalDateTime, Integer> getHorariosDisponiveis(String cro) throws Exception;
 }
