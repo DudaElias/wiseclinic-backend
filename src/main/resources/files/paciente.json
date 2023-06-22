@@ -8,5 +8,95 @@
         "genero": "Masculino",
         "dataNascimento": "1985-05-15",
         "convenio": "BRADESCO"
+    },
+    {
+        "cpf": "98765432100",
+        "nome": "Maria Souza",
+        "endereco": "Avenida dos Lírios, 456",
+        "email": "maria.souza@gmail.com",
+        "telefone": "(11) 5678-1234",
+        "genero": "Feminino",
+        "dataNascimento": "1990-07-20",
+        "convenio": "SULAMÉRICA"
+    },
+    {
+        "cpf": "45678912300",
+        "nome": "Pedro Oliveira",
+        "endereco": "Travessa das Rosas, 789",
+        "email": "pedro.oliveira@gmail.com",
+        "telefone": "(11) 7890-1234",
+        "genero": "Masculino",
+        "dataNascimento": "1978-12-03",
+        "convenio": "AMIL"
+    },
+    {
+        "cpf": "78912345600",
+        "nome": "Ana Santos",
+        "endereco": "Rua das Violetas, 321",
+        "email": "ana.santos@gmail.com",
+        "telefone": "(11) 2345-6789",
+        "genero": "Feminino",
+        "dataNascimento": "1982-09-10",
+        "convenio": "GOLDEN CROSS"
+    },
+    {
+        "cpf": "23456789000",
+        "nome": "Lucas Lima",
+        "endereco": "Avenida das Margaridas, 567",
+        "email": "lucas.lima@gmail.com",
+        "telefone": "(11) 6789-1234",
+        "genero": "Masculino",
+        "dataNascimento": "1995-03-25",
+        "convenio": "UNIMED"
+    },
+    {
+        "cpf": "56789012300",
+        "nome": "Carolina Ferreira",
+        "endereco": "Rua dos Girassóis, 890",
+        "email": "carolina.ferreira@gmail.com",
+        "telefone": "(11) 1234-5678",
+        "genero": "Feminino",
+        "dataNascimento": "1989-11-08",
+        "convenio": "BRADESCO"
+    },
+    {
+        "cpf": "90123456700",
+        "nome": "Márcio Almeida",
+        "endereco": "Travessa das Tulipas, 123",
+        "email": "marcio.almeida@gmail.com",
+        "telefone": "(11) 5678-1234",
+        "genero": "Masculino",
+        "dataNascimento": "1976-06-17",
+        "convenio": "AMIL"
+    },
+    {
+        "cpf": "34567890100",
+        "nome": "Juliana Rodrigues",
+        "endereco": "Avenida das Rosas, 456",
+        "email": "juliana.rodrigues@gmail.com",
+        "telefone": "(11) 7890-1234",
+        "genero": "Feminino",
+        "dataNascimento": "1987-04-12",
+        "convenio": "SULAMÉRICA"
+    },
+    {
+        "cpf": "67890123400",
+        "nome": "Ricardo Silva",
+        "endereco": "Rua das Margaridas, 789",
+        "email": "ricardo.silva@gmail.com",
+        "telefone": "(11) 2345-6789",
+        "genero": "Masculino",
+        "dataNascimento": "1992-01-30",
+        "convenio": "GOLDEN CROSS"
+    },
+    {
+        "cpf": "01234567800",
+        "nome": "Fernanda Santos",
+        "endereco": "Avenida dos Girassóis, 012",
+        "email": "fernanda.santos@gmail.com",
+        "telefone": "(11) 6789-1234",
+        "genero": "Feminino",
+        "dataNascimento": "1998-08-05",
+        "convenio": "UNIMED"
     }
 ]

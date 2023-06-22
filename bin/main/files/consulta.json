@@ -1,0 +1,15 @@
+[
+  {
+    "@type": "ConsultaMedica",
+    "id": 1,
+    "horario": "2023-06-19T09:00:00",
+    "checkIn": false,
+    "medico": {
+      "crm": "CRM/SP 123456"
+    },
+    "especialidade": "DERMATOLOGIA",
+    "paciente": {
+      "cpf": "336.203.440-35"
+    }
+  }
+]
