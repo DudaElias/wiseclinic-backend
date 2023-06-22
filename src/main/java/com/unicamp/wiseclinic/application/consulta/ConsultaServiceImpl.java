@@ -30,4 +30,10 @@ public class ConsultaServiceImpl implements ConsultaService {
     public List<Consulta> getConsultasPorHorario(LocalDateTime horario) throws Exception {
         return consultaRepository.getConsultasPorHorario(horario);
     }
+
+    @Override
+    public void checkInPaciente(int id) throws Exception {
+        consultaRepository.checkInPaciente(id);
+    }
+
 }
