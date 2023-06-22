@@ -6,5 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public record IOProperties(
     String paciente,
     String dentista,
-    String consulta
+    String consulta,
+    String medico
 ) { }
