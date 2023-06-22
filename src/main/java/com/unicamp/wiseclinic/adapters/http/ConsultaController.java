@@ -41,4 +41,15 @@ public class ConsultaController {
         }
     }
 
+    @PutMapping(value = "/checkIn/{id}")
+    void checkInPaciente(@PathVariable("id") int id) {
+        try {
+            consultaService.checkInPaciente(id);
+        }
+        catch(Exception e) {
+            throw new ResponseStatusException(
+                HttpStatus.INTERNAL_SERVER_ERROR, "Ocorreu um erro interno, tente novamente.", e);
+        }
+    }
+
 }

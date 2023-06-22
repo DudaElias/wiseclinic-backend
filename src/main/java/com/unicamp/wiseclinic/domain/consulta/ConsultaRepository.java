@@ -8,4 +8,6 @@ public interface ConsultaRepository {
     void salvar(Consulta consulta);
 
     List<Consulta> getConsultasPorHorario(LocalDateTime horario) throws Exception;
+
+    void checkInPaciente(int id) throws Exception;
 }

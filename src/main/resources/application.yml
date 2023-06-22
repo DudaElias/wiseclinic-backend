@@ -2,5 +2,6 @@ wiseclinic:
   database:
     paciente: "files/paciente.json"
     dentista: "files/dentista.json"
-    consulta: "files/consulta.json"
+    consulta-medica: "files/consulta-medica.json"
+    consulta-odontologica: "files/consulta-odontologica.json"
     medico: "files/medico.json"

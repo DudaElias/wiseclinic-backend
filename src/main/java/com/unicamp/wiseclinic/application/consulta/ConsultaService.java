@@ -11,4 +11,6 @@ public interface ConsultaService {
     Consulta criarConsulta(CriarConsultaCommand criarConsultaCommand);
 
     List<Consulta> getConsultasPorHorario(LocalDateTime horario) throws Exception;
+
+    void checkInPaciente(int id) throws Exception;
 }
