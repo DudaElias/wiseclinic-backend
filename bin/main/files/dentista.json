@@ -1,0 +1,17 @@
+[
+  {
+    "cro": "98765",
+    "especialidades": ["ORTODONTIA"],
+    "agenda": {
+      "horarios_disponiveis": {
+        "2023-06-19T09:00:00": 2,
+        "2023-06-19T10:30:00": 1,
+        "2023-06-19T15:00:00": 3
+      }
+    },
+    "nome": "Dr. João Silva",
+    "cpf": "123.456.789-00",
+    "email": "joao.silva@example.com",
+    "lista_consulta": []
+  }
+]

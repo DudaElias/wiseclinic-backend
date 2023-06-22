@@ -1,8 +1,11 @@
 package com.unicamp.wiseclinic.adapters.http;
 
 import com.unicamp.wiseclinic.application.dentista.DentistaService;
+import com.unicamp.wiseclinic.application.medico.MedicoService;
 import com.unicamp.wiseclinic.domain.dentista.Dentista;
 import com.unicamp.wiseclinic.domain.especialidade.EspecialidadeDentista;
+import com.unicamp.wiseclinic.domain.especialidade.EspecialidadeMedica;
+import com.unicamp.wiseclinic.domain.medico.Medico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,18 +16,18 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/dentistas")
-public class DentistaController {
+@RequestMapping("/medicos")
+public class MedicoController {
 
-    private DentistaService dentistaService;
+    private MedicoService medicoService;
 
     @Autowired
-    public DentistaController(DentistaService dentistaService) {
-        this.dentistaService = dentistaService;
+    public MedicoController(MedicoService medicoService) {
+        this.medicoService = medicoService;
     }
 
     @GetMapping(value = "/{especialidade}")
-    List<Dentista> getDentistaPorEspecialidade(@PathVariable("especialidade") EspecialidadeDentista especialidadeDentista) throws IOException {
-        return dentistaService.getDentistasPorEspecialidade(especialidadeDentista);
+    List<Medico> getMedicosPorEspecialidade(@PathVariable("especialidade") EspecialidadeMedica especialidadeMedica) throws IOException {
+        return medicoService.getMedicosPorEspecialidade(especialidadeMedica);
     }
 }
