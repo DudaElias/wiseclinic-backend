@@ -10,5 +10,29 @@
     "paciente": {
       "cpf": "336.203.440-35"
     }
+  },
+  {
+    "id": 2,
+    "horario": "2023-06-19T10:00:00",
+    "checkIn": false,
+    "medico": {
+      "crm": "CRM/SP 327849"
+    },
+    "especialidade": "ALERGOLOGIA",
+    "paciente": {
+      "cpf": "955.125.590-95"
+    }
+  },
+  {
+    "id": 3,
+    "horario": "2023-06-19T11:00:00",
+    "checkIn": false,
+    "medico": {
+      "crm": "CRM/SP 132649"
+    },
+    "especialidade": "CARDIOLOGIA",
+    "paciente": {
+      "cpf": "452.193.140-50"
+    }
   }
 ]

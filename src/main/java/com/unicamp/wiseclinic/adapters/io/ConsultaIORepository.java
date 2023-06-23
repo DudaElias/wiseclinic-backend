@@ -11,7 +11,7 @@ import com.unicamp.wiseclinic.domain.consulta.ConsultaRepository;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -32,13 +32,13 @@ public class ConsultaIORepository implements ConsultaRepository {
     }
 
     @Override
-    public List<Consulta> getConsultasPorHorario(LocalDateTime horario) throws Exception {
+    public List<Consulta> getConsultasPorDia(LocalDate dia) throws Exception {
         List<ConsultaMedica> consultasMedica = Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consultaMedica()), ConsultaMedica[].class));
         List<ConsultaOdontologica> consultasOdontologica = Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consultaOdontologica()), ConsultaOdontologica[].class));
         List<Consulta> consultas = Stream.concat(consultasMedica.stream(), consultasOdontologica.stream()).toList();
 
         return consultas.stream()
-                .filter(consulta -> consulta.getHorario().equals(horario))
+                .filter(consulta -> consulta.getHorario().toLocalDate().equals(dia))
                 .toList();
     }
 

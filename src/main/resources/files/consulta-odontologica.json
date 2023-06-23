@@ -1,1 +1,26 @@
-[]
+[
+    {
+        "id": 4,
+        "horario": "2023-06-20T09:00:00",
+        "checkIn": false,
+        "dentista": {
+          "cro": "CRO/SP 123456"
+        },
+        "especialidade": "ORTODONTIA",
+        "paciente": {
+          "cpf": "336.203.440-35"
+        }
+    },
+    {
+        "id": 5,
+        "horario": "2023-06-20T10:00:00",
+        "checkIn": false,
+        "dentista": {
+          "cro": "CRO/SP 327849"
+        },
+        "especialidade": "ODONTOPEDIATRIA",
+        "paciente": {
+          "cpf": "955.125.590-95"
+        }
+    }
+]
