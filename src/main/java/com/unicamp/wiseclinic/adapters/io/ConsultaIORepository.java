@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -59,6 +60,30 @@ public class ConsultaIORepository implements ConsultaRepository {
             writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consultaMedica()).toURI()), consultasMedica);
         else if (consulta instanceof ConsultaOdontologica)
             writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consultaMedica()).toURI()), consultasOdontologica);
+    }
+
+    @Override
+    public Consulta deleteConsulta(int id) throws Exception{
+        List<ConsultaMedica> consultasMedica = new ArrayList<>(Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consultaMedica()), ConsultaMedica[].class)));
+        List<ConsultaOdontologica> consultasOdontologica = new ArrayList<>(Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consultaOdontologica()), ConsultaOdontologica[].class)));
+        List<Consulta> consultas = Stream.concat(consultasMedica.stream(), consultasOdontologica.stream()).toList();
+
+        Consulta deletedConsulta = consultas
+                .stream()
+                .filter(consul -> consul.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> { return new Exception(); });
+
+        ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
+        if (deletedConsulta instanceof ConsultaMedica) {
+            consultasMedica.remove(deletedConsulta);
+            writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consultaMedica()).toURI()), consultasMedica);
+        }else if (deletedConsulta instanceof ConsultaOdontologica) {
+            consultasOdontologica.remove(deletedConsulta);
+            writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consultaOdontologica()).toURI()), consultasOdontologica);
+        }
+        return deletedConsulta;
+
     }
 
 }

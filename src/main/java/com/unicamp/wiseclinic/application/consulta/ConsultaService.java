@@ -13,4 +13,6 @@ public interface ConsultaService {
     List<Consulta> getConsultasPorDia(LocalDate dia) throws Exception;
 
     void checkInPaciente(int id) throws Exception;
+
+    Consulta deleteConsulta(int id) throws Exception;
 }

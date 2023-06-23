@@ -36,4 +36,8 @@ public class ConsultaServiceImpl implements ConsultaService {
         consultaRepository.checkInPaciente(id);
     }
 
+    @Override
+    public Consulta deleteConsulta(int id) throws Exception{
+        return consultaRepository.deleteConsulta(id);
+    }
 }
