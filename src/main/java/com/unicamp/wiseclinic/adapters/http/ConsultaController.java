@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -30,10 +30,10 @@ public class ConsultaController {
         return ConsultaQuery.toQuery(consulta);
     }
 
-    @GetMapping(value = "/{horario}")
-    List<Consulta> getConsultasPorHorario(@PathVariable("horario") LocalDateTime horario) {
+    @GetMapping(value = "/{dia}")
+    List<Consulta> getConsultasPorDia(@PathVariable("dia") LocalDate dia) {
         try {
-            return consultaService.getConsultasPorHorario(horario);
+            return consultaService.getConsultasPorDia(dia);
         }
         catch(Exception e) {
             throw new ResponseStatusException(
