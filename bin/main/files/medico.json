@@ -1,0 +1,17 @@
+[
+  {
+    "crm": "10101",
+    "especialidades": ["DERMATOLOGIA"],
+    "agenda": {
+      "horarios_disponiveis": {
+        "2023-06-22T09:00:00": 5,
+        "2023-06-22T10:30:00": 4,
+        "2023-06-22T15:00:00": 6
+      }
+    },
+    "nome": "Dra. Maria Santos",
+    "cpf": "929.736.550-72",
+    "email": "maria.santos@example.com",
+    "lista_consulta": []
+  }
+]

@@ -13,5 +13,140 @@
     "cpf": "123.456.789-00",
     "email": "joao.silva@example.com",
     "lista_consulta": []
+  },
+  {
+    "cro": "45678",
+    "especialidades": ["PERIODONTIA"],
+    "agenda": {
+      "horarios_disponiveis": {
+        "2023-06-19T08:30:00": 3,
+        "2023-06-19T11:00:00": 2,
+        "2023-06-19T14:30:00": 4
+      }
+    },
+    "nome": "Dra. Ana Rodrigues",
+    "cpf": "987.654.321-00",
+    "email": "ana.rodrigues@example.com",
+    "lista_consulta": []
+  },
+  {
+    "cro": "23456",
+    "especialidades": ["PERIODONTIA"],
+    "agenda": {
+      "horarios_disponiveis": {
+        "2023-06-19T09:30:00": 1,
+        "2023-06-19T11:30:00": 3,
+        "2023-06-19T14:00:00": 2
+      }
+    },
+    "nome": "Dr. Marcos Oliveira",
+    "cpf": "654.321.987-00",
+    "email": "marcos.oliveira@example.com",
+    "lista_consulta": []
+  },
+  {
+    "cro": "34567",
+    "especialidades": ["PERIODONTIA"],
+    "agenda": {
+      "horarios_disponiveis": {
+        "2023-06-19T08:00:00": 4,
+        "2023-06-19T10:30:00": 2,
+        "2023-06-19T13:00:00": 3
+      }
+    },
+    "nome": "Dra. Fernanda Santos",
+    "cpf": "321.654.987-00",
+    "email": "fernanda.santos@example.com",
+    "lista_consulta": []
+  },
+  {
+    "cro": "87654",
+    "especialidades": ["ODONTOPEDIATRIA"],
+    "agenda": {
+      "horarios_disponiveis": {
+        "2023-06-19T10:00:00": 3,
+        "2023-06-19T12:00:00": 2,
+        "2023-06-19T15:30:00": 4
+      }
+    },
+    "nome": "Dra. Paula Carvalho",
+    "cpf": "789.654.321-00",
+    "email": "paula.carvalho@example.com",
+    "lista_consulta": []
+  },
+  {
+    "cro": "76543",
+    "especialidades": ["ODONTOPEDIATRIA"],
+    "agenda": {
+      "horarios_disponiveis": {
+        "2023-06-19T09:30:00": 2,
+        "2023-06-19T11:00:00": 3,
+        "2023-06-19T14:30:00": 1
+      }
+    },
+    "nome": "Dr. André Almeida",
+    "cpf": "654.987.321-00",
+    "email": "andre.almeida@example.com",
+    "lista_consulta": []
+  },
+  {
+    "cro": "65432",
+    "especialidades": ["ODONTOPEDIATRIA"],
+    "agenda": {
+      "horarios_disponiveis": {
+        "2023-06-19T08:30:00": 3,
+        "2023-06-19T11:30:00": 1,
+        "2023-06-19T14:00:00": 2
+      }
+    },
+    "nome": "Dr. Carlos Souza",
+    "cpf": "987.321.654-00",
+    "email": "carlos.souza@example.com",
+    "lista_consulta": []
+  },
+  {
+    "cro": "54321",
+    "especialidades": ["ORTODONTIA"],
+    "agenda": {
+      "horarios_disponiveis": {
+        "2023-06-19T10:00:00": 2,
+        "2023-06-19T12:30:00": 3,
+        "2023-06-19T15:30:00": 1
+      }
+    },
+    "nome": "Dr. Roberto Ferreira",
+    "cpf": "321.987.654-00",
+    "email": "roberto.ferreira@example.com",
+    "lista_consulta": []
+  },
+  {
+    "cro": "43210",
+    "especialidades": ["ORTODONTIA"],
+    "agenda": {
+      "horarios_disponiveis": {
+        "2023-06-19T09:30:00": 2,
+        "2023-06-19T11:00:00": 3,
+        "2023-06-19T14:30:00": 1
+      }
+    },
+    "nome": "Dra. Beatriz Costa",
+    "cpf": "654.987.321-00",
+    "email": "beatriz.costa@example.com",
+    "lista_consulta": []
+  },
+  {
+    "cro": "32109",
+    "especialidades": ["ORTODONTIA"],
+    "agenda": {
+      "horarios_disponiveis": {
+        "2023-06-19T08:30:00": 3,
+        "2023-06-19T11:30:00": 2,
+        "2023-06-19T14:00:00": 1
+      }
+    },
+    "nome": "Dr. Eduardo Santos",
+    "cpf": "987.321.654-00",
+    "email": "eduardo.santos@example.com",
+    "lista_consulta": []
   }
 ]

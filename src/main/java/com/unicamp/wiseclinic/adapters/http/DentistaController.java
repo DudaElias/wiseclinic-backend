@@ -26,7 +26,7 @@ public class DentistaController {
     }
 
     @GetMapping(value = "/{especialidade}")
-    List<Dentista> criarConsulta(@PathVariable("especialidade") EspecialidadeDentista especialidadeDentista) throws IOException {
+    List<Dentista> getDentistaPorEspecialidade(@PathVariable("especialidade") EspecialidadeDentista especialidadeDentista) throws IOException {
         return dentistaService.getDentistasPorEspecialidade(especialidadeDentista);
     }
 
