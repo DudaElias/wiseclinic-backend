@@ -41,7 +41,7 @@ public abstract class Consulta {
     }
 
     public void checkInPaciente() {
-        checkIn = true;
+        checkIn = checkIn ? false : true;
     }
 
 }

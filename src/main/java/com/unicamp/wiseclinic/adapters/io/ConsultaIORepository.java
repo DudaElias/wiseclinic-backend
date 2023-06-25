@@ -59,7 +59,7 @@ public class ConsultaIORepository implements ConsultaRepository {
         if (consulta instanceof ConsultaMedica)
             writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consultaMedica()).toURI()), consultasMedica);
         else if (consulta instanceof ConsultaOdontologica)
-            writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consultaMedica()).toURI()), consultasOdontologica);
+            writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consultaOdontologica()).toURI()), consultasOdontologica);
     }
 
     @Override

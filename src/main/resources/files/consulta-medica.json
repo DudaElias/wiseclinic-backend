@@ -4,11 +4,13 @@
     "horario": "2023-06-19T09:00:00",
     "checkIn": false,
     "medico": {
-      "crm": "CRM/SP 123456"
+      "crm": "10101",
+      "nome": "Dra. Maria Santos"
     },
     "especialidade": "DERMATOLOGIA",
     "paciente": {
-      "cpf": "336.203.440-35"
+      "cpf": "12345678900",
+      "nome": "João da Silva"
     }
   },
   {
@@ -26,7 +28,7 @@
   {
     "id": 3,
     "horario": "2023-06-19T11:00:00",
-    "checkIn": false,
+    "checkIn": true,
     "medico": {
       "crm": "CRM/SP 132649"
     },
