@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/dentistas")
@@ -31,7 +30,7 @@ public class DentistaController {
     }
 
     @GetMapping(value = "/agenda/{cro}")
-    Map<LocalDateTime, Integer> getHorariosDisponiveis(@PathVariable("cro") String cro) throws Exception {
+    List<LocalDateTime> getHorariosDisponiveis(@PathVariable("cro") String cro) throws Exception {
         return dentistaService.getHorariosDisponiveis(cro);
     }
 }
