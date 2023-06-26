@@ -4,16 +4,9 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.unicamp.wiseclinic.domain.consulta.Consulta;
-import com.unicamp.wiseclinic.domain.consulta.ConsultaMedica;
-import com.unicamp.wiseclinic.domain.consulta.ConsultaOdontologica;
 import com.unicamp.wiseclinic.domain.consulta.ConsultaRepository;
-
 import com.unicamp.wiseclinic.domain.especialidade.Especialidade;
-import com.unicamp.wiseclinic.domain.especialidade.EspecialidadeDentista;
-import com.unicamp.wiseclinic.domain.especialidade.EspecialidadeMedica;
 import com.unicamp.wiseclinic.domain.paciente.Paciente;
-import com.unicamp.wiseclinic.domain.profissional.Dentista;
-import com.unicamp.wiseclinic.domain.profissional.Medico;
 import com.unicamp.wiseclinic.domain.profissional.Profissional;
 import org.springframework.stereotype.Component;
 
@@ -22,9 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 import java.util.UUID;
 
 @Component
@@ -43,7 +34,7 @@ public class ConsultaIORepository implements ConsultaRepository {
         return null;
     }
 
-    private ConsultaOdontologica salvarConsultaOdontologica(
+    /* private ConsultaOdontologica salvarConsultaOdontologica(
         UUID id,
         LocalDateTime horario,
         boolean checkIn,
@@ -101,13 +92,11 @@ public class ConsultaIORepository implements ConsultaRepository {
         );
 
         return consultaMedica;
-    }
+    } */
 
     @Override
     public List<Consulta> getConsultasPorDia(LocalDate dia) throws Exception {
-        List<ConsultaMedica> consultasMedica = Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consultaMedica()), ConsultaMedica[].class));
-        List<ConsultaOdontologica> consultasOdontologica = Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consultaOdontologica()), ConsultaOdontologica[].class));
-        List<Consulta> consultas = Stream.concat(consultasMedica.stream(), consultasOdontologica.stream()).toList();
+        List<Consulta> consultas = Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consulta()), Consulta[].class));
 
         return consultas.stream()
                 .filter(consulta -> consulta.getHorario().toLocalDate().equals(dia))
@@ -116,28 +105,21 @@ public class ConsultaIORepository implements ConsultaRepository {
 
     @Override
     public void checkInPaciente(UUID id) throws Exception {
-        List<ConsultaMedica> consultasMedica = Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consultaMedica()), ConsultaMedica[].class));
-        List<ConsultaOdontologica> consultasOdontologica = Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consultaOdontologica()), ConsultaOdontologica[].class));
-        List<Consulta> consultas = Stream.concat(consultasMedica.stream(), consultasOdontologica.stream()).toList();
+        List<Consulta> consultas = Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consulta()), Consulta[].class));
         Consulta consulta = consultas
             .stream()
-            .filter(consul -> consul.getId() == id)
+            .filter(consul -> consul.getId().equals(id))
             .findFirst()
             .orElseThrow(() -> { return new Exception(); });
         consulta.checkInPaciente();
 
         ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
-        if (consulta instanceof ConsultaMedica)
-            writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consultaMedica()).toURI()), consultasMedica);
-        else if (consulta instanceof ConsultaOdontologica)
-            writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consultaOdontologica()).toURI()), consultasOdontologica);
+        writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consulta()).toURI()), consultas);
     }
 
     @Override
     public Consulta deleteConsulta(UUID id) throws Exception{
-        List<ConsultaMedica> consultasMedica = new ArrayList<>(Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consultaMedica()), ConsultaMedica[].class)));
-        List<ConsultaOdontologica> consultasOdontologica = new ArrayList<>(Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consultaOdontologica()), ConsultaOdontologica[].class)));
-        List<Consulta> consultas = Stream.concat(consultasMedica.stream(), consultasOdontologica.stream()).toList();
+        List<Consulta> consultas = new ArrayList<>(Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consulta()), Consulta[].class)));
 
         Consulta deletedConsulta = consultas
                 .stream()
@@ -147,7 +129,7 @@ public class ConsultaIORepository implements ConsultaRepository {
 
         ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
 
-        if (deletedConsulta instanceof ConsultaMedica) {
+        /* if (deletedConsulta instanceof ConsultaMedica) {
             Medico medico = ((ConsultaMedica) deletedConsulta).getMedico();
             medico.getAgenda().liberarHorario(deletedConsulta.getHorario());
 
@@ -160,14 +142,14 @@ public class ConsultaIORepository implements ConsultaRepository {
 
             consultasOdontologica.remove(deletedConsulta);
             writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consultaOdontologica()).toURI()), consultasOdontologica);
-        }
+        } */
 
         return deletedConsulta;
     }
 
-    private ArrayList<ConsultaOdontologica> getConsultasOdontologicas() throws Exception {
+    /* private ArrayList<Consulta> getConsultasOdontologicas() throws Exception {
         return new ArrayList<>(Arrays.asList(objectMapper.readValue(
-            ClasspathUtils.readFromClasspath(ioProperties.consultaOdontologica()),
+            ClasspathUtils.readFromClasspath(ioProperties.consulta()),
             ConsultaOdontologica[].class)
         ));
     }
@@ -178,4 +160,11 @@ public class ConsultaIORepository implements ConsultaRepository {
             ConsultaMedica[].class)
         ));
     }
+
+    @Override
+    public Consulta salvar(UUID id, LocalDateTime horario, boolean checkIn, String codProfissional, Area area,
+            Especialidade especialidade, String docPaciente) throws Exception {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'salvar'");
+    } */
 }
