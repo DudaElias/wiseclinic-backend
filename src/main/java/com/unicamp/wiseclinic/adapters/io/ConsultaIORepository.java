@@ -12,8 +12,6 @@ import com.unicamp.wiseclinic.domain.especialidade.Area;
 import com.unicamp.wiseclinic.domain.medico.MedicoRepository;
 import com.unicamp.wiseclinic.domain.paciente.Paciente;
 import com.unicamp.wiseclinic.domain.paciente.PacienteRepository;
-import com.unicamp.wiseclinic.domain.profissional.Dentista;
-import com.unicamp.wiseclinic.domain.profissional.Medico;
 import com.unicamp.wiseclinic.domain.profissional.Profissional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -96,6 +94,7 @@ public class ConsultaIORepository implements ConsultaRepository {
                 .findFirst()
                 .orElseThrow(() -> { return new Exception(); });
 
+        consultas.remove(deletedConsulta);
         save(consultas);
         return deletedConsulta;
     }
