@@ -2,7 +2,9 @@ package com.unicamp.wiseclinic.application.paciente;
 
 import com.unicamp.wiseclinic.domain.paciente.Paciente;
 import com.unicamp.wiseclinic.domain.paciente.PacienteRepository;
+import com.unicamp.wiseclinic.domain.paciente.exception.PacienteException;
 import com.unicamp.wiseclinic.domain.paciente.exception.PacienteNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -12,6 +14,7 @@ public class PacienteServiceImpl implements PacienteService {
 
     private PacienteRepository pacienteRepository;
 
+    @Autowired
     public PacienteServiceImpl(PacienteRepository pacienteRepository) {
         this.pacienteRepository = pacienteRepository;
     }

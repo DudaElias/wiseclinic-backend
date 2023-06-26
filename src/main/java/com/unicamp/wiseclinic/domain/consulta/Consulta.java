@@ -4,21 +4,22 @@ import com.unicamp.wiseclinic.domain.paciente.Paciente;
 import com.unicamp.wiseclinic.domain.profissional.Profissional;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public abstract class Consulta {
-    protected int id;
+    protected UUID id;
     protected Paciente paciente;
     protected LocalDateTime horario;
     protected boolean checkIn;
 
-    public Consulta(int id, Paciente paciente, LocalDateTime horario, boolean checkIn) {
+    public Consulta(UUID id, Paciente paciente, LocalDateTime horario, boolean checkIn) {
         this.id = id;
         this.paciente = paciente;
         this.horario = horario;
         this.checkIn = checkIn;
     }
     
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 

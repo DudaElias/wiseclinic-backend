@@ -5,8 +5,6 @@ public enum EspecialidadeDentista implements Especialidade {
     PERIODONTIA(247),
     ODONTOPEDIATRIA(236);
 
-    private static final String REFERENCIA = "ODONTOLOGIA";
-
     private final int cod;
 
     EspecialidadeDentista(int especialidade){
@@ -15,9 +13,5 @@ public enum EspecialidadeDentista implements Especialidade {
 
     public int getCod(){
         return cod;
-    }
-
-    public String getReferencia() {
-        return REFERENCIA;
     }
 }

@@ -1,14 +1,23 @@
 package com.unicamp.wiseclinic.application.consulta.command;
 
-import com.unicamp.wiseclinic.domain.consulta.Consulta;
+import com.unicamp.wiseclinic.domain.especialidade.Area;
+import com.unicamp.wiseclinic.domain.especialidade.Especialidade;
 
-public class CriarConsultaCommand {
+import java.time.LocalDateTime;
 
-    public CriarConsultaCommand() {
+public record CriarConsultaCommand(
 
-    }
+    Paciente paciente,
+    LocalDateTime data,
+    Profissional profissional
+) {
+    public record Paciente(
+        String cpf
+    ) {}
 
-    public Consulta toConsulta() {
-        return null;
-    }
+    public record Profissional(
+        String area,
+        String especialidade,
+        String documento
+    ) {}
 }
