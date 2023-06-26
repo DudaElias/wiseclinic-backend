@@ -50,4 +50,9 @@ public final class Medico extends Profissional {
     public boolean cancelarConsulta(int id) {
         return false;
     }
+
+    @Override
+    public String getDoc() {
+        return getCrm();
+    }
 }

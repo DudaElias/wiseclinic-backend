@@ -1,5 +1,6 @@
 package com.unicamp.wiseclinic.domain.consulta;
 
+import com.unicamp.wiseclinic.domain.especialidade.Area;
 import com.unicamp.wiseclinic.domain.especialidade.Especialidade;
 import com.unicamp.wiseclinic.domain.paciente.Paciente;
 import com.unicamp.wiseclinic.domain.profissional.Profissional;
@@ -16,7 +17,8 @@ public interface ConsultaRepository {
         LocalDateTime horario,
         boolean checkIn,
         Profissional profissional,
-        Especialidade especialidade,
+        Area area,
+        int especialidade,
         Paciente paciente
     ) throws Exception;
 

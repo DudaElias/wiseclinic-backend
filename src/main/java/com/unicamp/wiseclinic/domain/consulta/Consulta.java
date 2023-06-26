@@ -1,6 +1,8 @@
 package com.unicamp.wiseclinic.domain.consulta;
 
 import com.unicamp.wiseclinic.domain.especialidade.Area;
+import com.unicamp.wiseclinic.domain.paciente.Paciente;
+import com.unicamp.wiseclinic.domain.profissional.Profissional;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -9,20 +11,20 @@ public class Consulta {
     private UUID id;
     private LocalDateTime horario;
     private boolean checkIn;
-    private String codProfissional;
+    private Profissional profissional;
     private Area area;
     private int especialidade;
-    private String docPaciente;
+    private Paciente paciente;
 
-    public Consulta(UUID id, LocalDateTime horario, boolean checkIn, String codProfissional, Area area,
-            int especialidade, String docPaciente) {
+    public Consulta(UUID id, LocalDateTime horario, boolean checkIn, Profissional profissional, Area area,
+            int especialidade, Paciente paciente) {
         this.id = id;
         this.horario = horario;
         this.checkIn = checkIn;
-        this.codProfissional = codProfissional;
+        this.profissional = profissional;
         this.area = area;
         this.especialidade = especialidade;
-        this.docPaciente = docPaciente;
+        this.paciente = paciente;
     }
 
     public UUID getId() {
@@ -45,12 +47,12 @@ public class Consulta {
         this.checkIn = checkIn;
     }
 
-    public String getCodProfissional() {
-        return codProfissional;
+    public Profissional getProfissional() {
+        return profissional;
     }
 
-    public void setCodProfissional(String codProfissional) {
-        this.codProfissional = codProfissional;
+    public void setProfissional(Profissional profissional) {
+        this.profissional = profissional;
     }
 
     public Area getArea() {
@@ -69,12 +71,12 @@ public class Consulta {
         this.especialidade = especialidade;
     }
 
-    public String getDocPaciente() {
-        return docPaciente;
+    public Paciente getPaciente() {
+        return paciente;
     }
 
-    public void setDocPaciente(String docPaciente) {
-        this.docPaciente = docPaciente;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 
     public boolean isCheckIn() {

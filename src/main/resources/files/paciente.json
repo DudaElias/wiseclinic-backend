@@ -6,7 +6,7 @@
         "email": "joao.silva@gmail.com",
         "telefone": "(11) 1234-5678",
         "genero": "Masculino",
-        "dataNascimento": "1985-05-15",
+        "data_nascimento": "1985-05-15",
         "convenio": "BRADESCO"
     }
 ]

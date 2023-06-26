@@ -25,7 +25,7 @@ public class DentistaController {
     }
 
     @GetMapping(value = "/{especialidade}")
-    List<? extends Profissional> criarConsulta(@PathVariable("especialidade") EspecialidadeDentista especialidadeDentista) throws Exception {
+    List<? extends Profissional> getDentistasPorEspecialidade(@PathVariable("especialidade") EspecialidadeDentista especialidadeDentista) throws Exception {
         return dentistaService.getProfissionaisPorEspecialidade(especialidadeDentista);
     }
 

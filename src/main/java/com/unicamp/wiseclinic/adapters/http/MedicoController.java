@@ -1,6 +1,9 @@
 package com.unicamp.wiseclinic.adapters.http;
 
+import com.unicamp.wiseclinic.domain.especialidade.EspecialidadeDentista;
+import com.unicamp.wiseclinic.domain.especialidade.EspecialidadeMedica;
 import com.unicamp.wiseclinic.domain.medico.MedicoService;
+import com.unicamp.wiseclinic.domain.profissional.Profissional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
@@ -22,6 +25,12 @@ public class MedicoController {
     @Autowired
     public MedicoController(MedicoService medicoService) {
         this.medicoService = medicoService;
+    }
+
+    @GetMapping(value = "/{especialidade}")
+    List<? extends Profissional> getMedicosPorEspecialidade(@PathVariable("especialidade")
+                                                            EspecialidadeMedica especialidadeMedica) throws Exception {
+        return medicoService.getProfissionaisPorEspecialidade(especialidadeMedica);
     }
 
     @GetMapping(value = "/agenda/{crm}/{data}")

@@ -42,6 +42,11 @@ public final class Dentista extends Profissional {
     }
 
     @Override
+    public String getDoc() {
+        return getCro();
+    }
+
+    @Override
     public boolean cancelarConsulta(int id) {
         return false;
     }
