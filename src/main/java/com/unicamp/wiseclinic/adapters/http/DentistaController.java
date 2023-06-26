@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -28,8 +29,8 @@ public class DentistaController {
         return dentistaService.getProfissionaisPorEspecialidade(especialidadeDentista);
     }
 
-    @GetMapping(value = "/agenda/{cro}")
-    List<LocalDateTime> getHorariosDisponiveis(@PathVariable("cro") String cro) throws Exception {
-        return dentistaService.getHorariosDisponiveis(cro);
+    @GetMapping(value = "/agenda/{cro}/{data}")
+    List<LocalDateTime> getHorariosDisponiveis(@PathVariable("cro") String cro, @PathVariable("data") LocalDate data) throws Exception {
+        return dentistaService.getHorariosDisponiveis(cro, data);
     }
 }

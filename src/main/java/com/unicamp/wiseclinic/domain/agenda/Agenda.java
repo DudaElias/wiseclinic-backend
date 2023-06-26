@@ -7,31 +7,31 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Agenda {
-    private List<LocalDateTime> horariosDisponiveis;
+    private List<LocalDateTime> horariosOcupados;
 
     public Agenda() {
-        this.horariosDisponiveis = Collections.emptyList();
+        this.horariosOcupados = Collections.emptyList();
     }
 
 
-    public List<LocalDateTime> getHorariosDisponiveis() {
-        return horariosDisponiveis;
+    public List<LocalDateTime> getHorariosOcupados() {
+        return horariosOcupados;
     }
 
     public void liberarHorario(LocalDateTime horario) {
-        horariosDisponiveis.add(horario);
+        horariosOcupados.remove(horario);
     }
 
     public void ocuparHorario(LocalDateTime horario) {
-        horariosDisponiveis.remove(horario);
+        horariosOcupados.add(horario);
     }
 
     public boolean isHorarioOcupado(LocalDateTime horario) {
-        return horariosDisponiveis.contains(horario);
+        return horariosOcupados.contains(horario);
     }
 
     public List<LocalDateTime> filtrarHorario(LocalDate dia) {
-        return horariosDisponiveis.stream()
+        return horariosOcupados.stream()
                 .filter(dateTime -> dateTime.toLocalDate().equals(dia))
                 .collect(Collectors.toList());
     }

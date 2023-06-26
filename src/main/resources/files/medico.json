@@ -3,9 +3,9 @@
     "crm": "101431",
     "especialidades": ["DERMATOLOGIA"],
     "agenda": {
-      "horarios_disponiveis": [
+      "horarios_ocupados": [
         "2023-06-22T09:00:00",
-        "2023-06-22T10:30:00",
+        "2023-06-22T10:00:00",
         "2023-06-22T15:00:00"
       ]
     },

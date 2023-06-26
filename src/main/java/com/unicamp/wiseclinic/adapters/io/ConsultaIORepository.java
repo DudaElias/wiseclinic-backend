@@ -121,7 +121,7 @@ public class ConsultaIORepository implements ConsultaRepository {
         List<Consulta> consultas = Stream.concat(consultasMedica.stream(), consultasOdontologica.stream()).toList();
         Consulta consulta = consultas
             .stream()
-            .filter(consul -> consul.getId() == id)
+            .filter(consul -> consul.getId().equals(id))
             .findFirst()
             .orElseThrow(() -> { return new Exception(); });
         consulta.checkInPaciente();
@@ -141,7 +141,7 @@ public class ConsultaIORepository implements ConsultaRepository {
 
         Consulta deletedConsulta = consultas
                 .stream()
-                .filter(consul -> consul.getId() == id)
+                .filter(consul -> consul.getId().equals(id))
                 .findFirst()
                 .orElseThrow(() -> { return new Exception(); });
 

@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "ea45526e-143d-11ee-be56-0242ac120002",
     "horario": "2023-06-19T09:00:00",
     "checkIn": false,
     "medico": {
@@ -20,7 +20,7 @@
     }
   },
   {
-    "id": 2,
+    "id": "fde49c76-143d-11ee-be56-0242ac120002",
     "horario": "2023-06-19T10:00:00",
     "checkIn": false,
     "medico": {
@@ -38,7 +38,7 @@
     }
   },
   {
-    "id": 3,
+    "id": "2332f608-143e-11ee-be56-0242ac120002",
     "horario": "2023-06-19T11:00:00",
     "checkIn": true,
     "medico": {

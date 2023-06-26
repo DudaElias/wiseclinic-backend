@@ -12,6 +12,8 @@ import com.unicamp.wiseclinic.domain.profissional.ProfissionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -33,8 +35,8 @@ public class DentistaServiceImpl implements DentistaService {
     }
 
     @Override
-    public List<LocalDateTime> getHorariosDisponiveis(String cro) throws Exception{
-        return dentistaRepository.getHorariosDisponiveis(cro);
+    public List<LocalDateTime> getHorariosDisponiveis(String cro, LocalDate data) throws Exception{
+        return dentistaRepository.getHorariosDisponiveis(cro, data);
     }
 
     @Override

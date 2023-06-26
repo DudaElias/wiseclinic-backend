@@ -3,9 +3,9 @@
     "cro": "98765",
     "especialidades": ["ORTODONTIA"],
     "agenda": {
-      "horarios_disponiveis": [
+      "horarios_ocupados": [
         "2023-06-19T09:00:00",
-        "2023-06-19T10:30:00",
+        "2023-06-19T10:00:00",
         "2023-06-19T15:00:00"
       ]
     },

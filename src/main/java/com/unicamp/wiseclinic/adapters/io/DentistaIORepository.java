@@ -8,7 +8,11 @@ import com.unicamp.wiseclinic.domain.profissional.Profissional;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -38,14 +42,27 @@ public class DentistaIORepository implements DentistaRepository {
     }
 
     @Override
-    public List<LocalDateTime> getHorariosDisponiveis(String cro) throws Exception {
-        List<Dentista> dentistas = Arrays.asList(
-            objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.dentista()), Dentista[].class)
-        );
+    public List<LocalDateTime> getHorariosDisponiveis(String cro, LocalDate data) throws Exception{
+        List<Dentista> dentistas = Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.dentista()), Dentista[].class));
+        for(Dentista dentista : dentistas){
+            if(dentista.getCro().equals(cro)){
+                List<LocalDateTime> horariosOcupados = dentista.getAgenda().filtrarHorario(data);
 
-        for (Dentista dentista : dentistas) {
-            if (dentista.getCro().equals(cro)) {
-                return dentista.getAgenda().getHorariosDisponiveis();
+                LocalDateTime startDateTime = LocalDateTime.of(data, LocalTime.of(8, 0));
+                LocalDateTime endDateTime = LocalDateTime.of(data, LocalTime.of(17, 0));
+                LocalDateTime horarioAlmoco = LocalDateTime.of(data, LocalTime.of(12, 0));
+
+                List<LocalDateTime> horariosDisponiveis = new ArrayList<>();
+
+                LocalDateTime currentDateTime = startDateTime;
+                while (currentDateTime.isBefore(endDateTime)) {
+                    if(!horariosOcupados.contains(currentDateTime) && !currentDateTime.equals(horarioAlmoco)){
+                        horariosDisponiveis.add(currentDateTime);
+                    }
+                    currentDateTime = currentDateTime.plusHours(1);
+                }
+
+                return horariosDisponiveis;
             }
         }
 
