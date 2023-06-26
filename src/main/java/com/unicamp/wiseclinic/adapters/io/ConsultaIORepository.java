@@ -123,44 +123,19 @@ public class ConsultaIORepository implements ConsultaRepository {
 
         Consulta deletedConsulta = consultas
                 .stream()
-                .filter(consul -> consul.getId() == id)
+                .filter(consul -> consul.getId().equals(id))
                 .findFirst()
                 .orElseThrow(() -> { return new Exception(); });
 
         ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
 
-        /* if (deletedConsulta instanceof ConsultaMedica) {
-            Medico medico = ((ConsultaMedica) deletedConsulta).getMedico();
-            medico.getAgenda().liberarHorario(deletedConsulta.getHorario());
-
-            consultasMedica.remove(deletedConsulta);
-            writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consultaMedica()).toURI()), consultasMedica);
-        }
-        else if (deletedConsulta instanceof ConsultaOdontologica) {
-            Dentista dentista = ((ConsultaOdontologica) deletedConsulta).getDentista();
-            dentista.getAgenda().liberarHorario(deletedConsulta.getHorario());
-
-            consultasOdontologica.remove(deletedConsulta);
-            writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consultaOdontologica()).toURI()), consultasOdontologica);
-        } */
+        consultas.remove(deletedConsulta);
+        writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consulta()).toURI()), consultas);
 
         return deletedConsulta;
     }
 
-    /* private ArrayList<Consulta> getConsultasOdontologicas() throws Exception {
-        return new ArrayList<>(Arrays.asList(objectMapper.readValue(
-            ClasspathUtils.readFromClasspath(ioProperties.consulta()),
-            ConsultaOdontologica[].class)
-        ));
-    }
-
-    private ArrayList<ConsultaMedica> getConsultasMedicas() throws Exception {
-        return new ArrayList<>(Arrays.asList(objectMapper.readValue(
-            ClasspathUtils.readFromClasspath(ioProperties.consultaMedica()),
-            ConsultaMedica[].class)
-        ));
-    }
-
+    /*
     @Override
     public Consulta salvar(UUID id, LocalDateTime horario, boolean checkIn, String codProfissional, Area area,
             Especialidade especialidade, String docPaciente) throws Exception {

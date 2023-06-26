@@ -8,9 +8,11 @@ import com.unicamp.wiseclinic.domain.especialidade.exception.EspecialidadeNotAva
 import com.unicamp.wiseclinic.domain.medico.MedicoRepository;
 import com.unicamp.wiseclinic.domain.medico.MedicoService;
 import com.unicamp.wiseclinic.domain.profissional.Profissional;
+import com.unicamp.wiseclinic.domain.profissional.ProfissionalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +20,7 @@ import java.util.List;
 
 @Service
 public class MedicoServiceImpl implements MedicoService {
-    private final MedicoRepository medicoRepository;
+    private final ProfissionalRepository medicoRepository;
 
     @Autowired
     public MedicoServiceImpl(MedicoRepository medicoRepository) {
@@ -26,8 +28,8 @@ public class MedicoServiceImpl implements MedicoService {
     }
 
     @Override
-    public List<LocalDateTime> getHorariosDisponiveis(String crm) throws Exception {
-        return medicoRepository.getHorariosDisponiveis(crm);
+    public List<LocalDateTime> getHorariosDisponiveis(String crm, LocalDate data) throws Exception {
+        return medicoRepository.getHorariosDisponiveis(crm, data);
     }
 
     @Override
@@ -36,6 +38,15 @@ public class MedicoServiceImpl implements MedicoService {
             throw new EspecialidadeNotAvailableException(Area.MEDICINA.name(), especialidade.toString());
         }
         return medicoRepository.getProfissionaisPorEspecialidade(especialidade);
+    }
+
+    @Override
+    public void removerConsulta(String codProfissional, LocalDateTime horario) throws Exception {
+
+        Profissional medico = getProfissionalPorDocumento(codProfissional);
+        medico.getAgenda().liberarHorario(horario);
+        medicoRepository.atualizarProfissional(medico);
+
     }
 
     @Override

@@ -6,14 +6,18 @@ import com.unicamp.wiseclinic.domain.especialidade.Area;
 import com.unicamp.wiseclinic.domain.especialidade.Especialidade;
 import com.unicamp.wiseclinic.domain.especialidade.EspecialidadeDentista;
 import com.unicamp.wiseclinic.domain.especialidade.exception.EspecialidadeNotAvailableException;
+import com.unicamp.wiseclinic.domain.profissional.Dentista;
 import com.unicamp.wiseclinic.domain.profissional.Profissional;
 import com.unicamp.wiseclinic.domain.profissional.ProfissionalRepository;
 import com.unicamp.wiseclinic.domain.profissional.ProfissionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class DentistaServiceImpl implements DentistaService {
@@ -33,8 +37,15 @@ public class DentistaServiceImpl implements DentistaService {
     }
 
     @Override
-    public List<LocalDateTime> getHorariosDisponiveis(String cro) throws Exception{
-        return dentistaRepository.getHorariosDisponiveis(cro);
+    public void removerConsulta(String codProfissional, LocalDateTime horario) throws Exception {
+        Profissional dentista = getProfissionalPorDocumento(codProfissional);
+        dentista.getAgenda().liberarHorario(horario);
+        dentistaRepository.atualizarProfissional(dentista);
+    }
+
+    @Override
+    public List<LocalDateTime> getHorariosDisponiveis(String cro, LocalDate data) throws Exception{
+        return dentistaRepository.getHorariosDisponiveis(cro, data);
     }
 
     @Override

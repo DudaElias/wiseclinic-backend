@@ -3,7 +3,7 @@
     "id": "2eed7be7-ca70-456c-b747-bccad6131628",
     "horario": "2023-06-19T09:00:00",
     "checkIn": false,
-    "codProfissional": "10101",
+    "codProfissional": "101431",
     "area": "MEDICINA",
     "especialidade": 421,
     "docPaciente": "12345678900"
@@ -12,7 +12,7 @@
     "id": "67f53568-542c-4ccb-9935-c20892d430be",
     "horario": "2023-06-19T10:00:00",
     "checkIn": false,
-    "codProfissional" : "CRM/SP 327849",
+    "codProfissional" : "101431",
     "area": "MEDICINA",
     "especialidade": 197,
     "docPaciente": "955.125.590-95"
@@ -21,7 +21,7 @@
     "id": "96fc59cd-e175-49e2-9bc4-c27d3ba24080",
     "horario": "2023-06-19T11:00:00",
     "checkIn": true,
-    "codProfissional": "CRM/SP 132649",
+    "codProfissional": "101431",
     "area": "MEDICINA",
     "especialidade": 200,
     "docPaciente": "452.193.140-50"
@@ -30,7 +30,7 @@
     "id": "61a7300a-277a-47e9-b7fc-3d1a4495c083",
     "horario": "2023-06-20T09:00:00",
     "checkIn": false,
-    "codProfissional": "CRO/SP 123456",
+    "codProfissional": "98765",
     "area": "ODONTOLOGIA",
     "especialidade": 240,
     "docPaciente": "336.203.440-35"
@@ -39,7 +39,7 @@
       "id": "b96a9ade-400c-4a6d-a6cf-0c6af5de26a0",
       "horario": "2023-06-20T10:00:00",
       "checkIn": false,
-      "codProfissional": "CRO/SP 327849",
+      "codProfissional": "98765",
       "area": "ODONTOLOGIA",
       "especialidade": 236,
       "docPaciente": "955.125.590-95"

@@ -1,12 +1,12 @@
 [
   {
     "crm": "101431",
-    "especialidades": ["DERMATOLOGIA"],
+    "especialidades": ["DERMATOLOGIA", "ALERGOLOGIA", "CARDIOLOGIA"],
     "agenda": {
-      "horarios_disponiveis": [
-        "2023-06-22T09:00:00",
-        "2023-06-22T10:30:00",
-        "2023-06-22T15:00:00"
+      "horarios_ocupados": [
+        "2023-06-19T09:00:00",
+        "2023-06-19T10:00:00",
+        "2023-06-19T11:00:00"
       ]
     },
     "nome": "Dra. Maria Santos",

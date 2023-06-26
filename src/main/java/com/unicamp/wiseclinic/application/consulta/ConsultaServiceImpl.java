@@ -75,7 +75,10 @@ public class ConsultaServiceImpl implements ConsultaService {
 
     @Override
     public Consulta deleteConsulta(UUID id) throws Exception{
-        return consultaRepository.deleteConsulta(id);
+        Consulta consultaDeletada = consultaRepository.deleteConsulta(id);
+        ProfissionalService profissionalService = profissionalServiceFactory.getInstance(consultaDeletada.getArea());
+        profissionalService.removerConsulta(consultaDeletada.getCodProfissional(), consultaDeletada.getHorario());
+        return consultaDeletada;
     }
 
     private Area extractArea(String area) throws AreaNotFoundException {
