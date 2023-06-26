@@ -7,7 +7,7 @@ public record ConsultaQuery(
     PacienteQuery paciente
 ) {
 
-    public static ConsultaQuery toQuery(Consulta consulta) {
+    /* public static ConsultaQuery toQuery(Consulta consulta) {
         return new ConsultaQuery(
             new PacienteQuery(
                 consulta.getPaciente().getCpf(),
@@ -20,5 +20,5 @@ public record ConsultaQuery(
                 consulta.getPaciente().getConvenio()
             )
         );
-    }
+    } */
 }

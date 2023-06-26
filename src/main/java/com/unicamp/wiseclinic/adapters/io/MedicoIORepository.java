@@ -1,13 +1,17 @@
 package com.unicamp.wiseclinic.adapters.io;
 
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.unicamp.wiseclinic.domain.especialidade.Especialidade;
 import com.unicamp.wiseclinic.domain.medico.MedicoRepository;
+import com.unicamp.wiseclinic.domain.profissional.Dentista;
 import com.unicamp.wiseclinic.domain.profissional.Medico;
 import com.unicamp.wiseclinic.domain.profissional.Profissional;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -76,5 +80,17 @@ public class MedicoIORepository implements MedicoRepository {
             .stream(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.dentista()), Medico[].class))
             .filter(medico -> medico.getEspecialidades().contains(especialidade))
             .toList();
+    }
+
+    @Override
+    public void atualizarProfissional(Profissional profissional) throws Exception {
+        List<Medico> medicos = new ArrayList<>(Arrays
+                .stream(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.medico()), Medico[].class))
+                .filter(medico -> !Objects.equals(medico.getCrm(), ((Medico) profissional).getCrm()))
+                .toList());
+        medicos.add(((Medico) profissional));
+
+        ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
+        writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.medico()).toURI()), medicos);
     }
 }

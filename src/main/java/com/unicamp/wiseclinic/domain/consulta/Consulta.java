@@ -1,44 +1,84 @@
 package com.unicamp.wiseclinic.domain.consulta;
 
-import com.unicamp.wiseclinic.domain.paciente.Paciente;
-import com.unicamp.wiseclinic.domain.profissional.Profissional;
+import com.unicamp.wiseclinic.domain.especialidade.Area;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public abstract class Consulta {
-    protected UUID id;
-    protected Paciente paciente;
-    protected LocalDateTime horario;
-    protected boolean checkIn;
+public class Consulta {
+    private UUID id;
+    private LocalDateTime horario;
+    private boolean checkIn;
+    private String codProfissional;
+    private Area area;
+    private int especialidade;
+    private String docPaciente;
 
-    public Consulta(UUID id, Paciente paciente, LocalDateTime horario, boolean checkIn) {
+    public Consulta(UUID id, LocalDateTime horario, boolean checkIn, String codProfissional, Area area,
+            int especialidade, String docPaciente) {
         this.id = id;
-        this.paciente = paciente;
         this.horario = horario;
         this.checkIn = checkIn;
+        this.codProfissional = codProfissional;
+        this.area = area;
+        this.especialidade = especialidade;
+        this.docPaciente = docPaciente;
     }
-    
+
     public UUID getId() {
         return id;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public LocalDateTime getHorario() {
         return horario;
     }
 
-    public boolean isCheckIn() {
-        return checkIn;
+    public void setHorario(LocalDateTime horario) {
+        this.horario = horario;
     }
 
-    public abstract void trocarProfissional(Profissional profissional);
+    public void setCheckIn(boolean checkIn) {
+        this.checkIn = checkIn;
+    }
 
-    public void trocarHorario(LocalDateTime horario){
+    public String getCodProfissional() {
+        return codProfissional;
+    }
 
+    public void setCodProfissional(String codProfissional) {
+        this.codProfissional = codProfissional;
+    }
+
+    public Area getArea() {
+        return area;
+    }
+
+    public void setArea(Area area) {
+        this.area = area;
+    }
+
+    public int getEspecialidade() {
+        return especialidade;
+    }
+
+    public void setEspecialidade(int especialidade) {
+        this.especialidade = especialidade;
+    }
+
+    public String getDocPaciente() {
+        return docPaciente;
+    }
+
+    public void setDocPaciente(String docPaciente) {
+        this.docPaciente = docPaciente;
+    }
+
+    public boolean isCheckIn() {
+        return checkIn;
     }
 
     public void checkInPaciente() {

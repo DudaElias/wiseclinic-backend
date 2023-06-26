@@ -1,6 +1,8 @@
 package com.unicamp.wiseclinic.adapters.io;
 
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.unicamp.wiseclinic.domain.dentista.DentistaRepository;
 import com.unicamp.wiseclinic.domain.profissional.Dentista;
 import com.unicamp.wiseclinic.domain.especialidade.Especialidade;
@@ -8,6 +10,7 @@ import com.unicamp.wiseclinic.domain.profissional.Profissional;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -39,6 +42,18 @@ public class DentistaIORepository implements DentistaRepository {
             .stream(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.dentista()), Dentista[].class))
             .filter(dentista -> dentista.getEspecialidades().contains(especialidadeDentista))
             .toList();
+    }
+
+    @Override
+    public void atualizarProfissional(Profissional profissional) throws Exception {
+        List<Dentista> dentistas = Arrays
+                .stream(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.dentista()), Dentista[].class))
+                .filter(dentista -> dentista.getCro() != ((Dentista) profissional).getCro())
+                .toList();
+        dentistas.add(((Dentista) profissional));
+
+        ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
+        writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.dentista()).toURI()), dentistas);
     }
 
     @Override

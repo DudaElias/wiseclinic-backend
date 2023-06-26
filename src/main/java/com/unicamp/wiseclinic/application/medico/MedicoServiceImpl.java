@@ -41,6 +41,15 @@ public class MedicoServiceImpl implements MedicoService {
     }
 
     @Override
+    public void removerConsulta(String codProfissional, LocalDateTime horario) throws Exception {
+
+        Profissional medico = getProfissionalPorDocumento(codProfissional);
+        medico.getAgenda().liberarHorario(horario);
+        medicoRepository.atualizarProfissional(medico);
+
+    }
+
+    @Override
     public Profissional getProfissionalPorDocumento(String documento) throws Exception {
         return medicoRepository.getProfissionalPorDocumento(documento);
     }

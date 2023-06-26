@@ -6,6 +6,7 @@ import com.unicamp.wiseclinic.domain.especialidade.Area;
 import com.unicamp.wiseclinic.domain.especialidade.Especialidade;
 import com.unicamp.wiseclinic.domain.especialidade.EspecialidadeDentista;
 import com.unicamp.wiseclinic.domain.especialidade.exception.EspecialidadeNotAvailableException;
+import com.unicamp.wiseclinic.domain.profissional.Dentista;
 import com.unicamp.wiseclinic.domain.profissional.Profissional;
 import com.unicamp.wiseclinic.domain.profissional.ProfissionalRepository;
 import com.unicamp.wiseclinic.domain.profissional.ProfissionalService;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class DentistaServiceImpl implements DentistaService {
@@ -32,6 +34,13 @@ public class DentistaServiceImpl implements DentistaService {
             throw new EspecialidadeNotAvailableException(Area.ODONTOLOGIA.name(), especialidade.toString());
         }
         return dentistaRepository.getProfissionaisPorEspecialidade(especialidade);
+    }
+
+    @Override
+    public void removerConsulta(String codProfissional, LocalDateTime horario) throws Exception {
+        Profissional dentista = getProfissionalPorDocumento(codProfissional);
+        dentista.getAgenda().liberarHorario(horario);
+        dentistaRepository.atualizarProfissional(dentista);
     }
 
     @Override
