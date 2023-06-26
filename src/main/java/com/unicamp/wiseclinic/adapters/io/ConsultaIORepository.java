@@ -8,6 +8,8 @@ import com.unicamp.wiseclinic.domain.consulta.ConsultaMedica;
 import com.unicamp.wiseclinic.domain.consulta.ConsultaOdontologica;
 import com.unicamp.wiseclinic.domain.consulta.ConsultaRepository;
 
+import com.unicamp.wiseclinic.domain.dentista.Dentista;
+import com.unicamp.wiseclinic.domain.medico.Medico;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -75,15 +77,23 @@ public class ConsultaIORepository implements ConsultaRepository {
                 .orElseThrow(() -> { return new Exception(); });
 
         ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
+
         if (deletedConsulta instanceof ConsultaMedica) {
+            Medico medico = ((ConsultaMedica) deletedConsulta).getMedico();
+            medico.getAgenda().liberarHorario(deletedConsulta.getHorario());
+
             consultasMedica.remove(deletedConsulta);
             writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consultaMedica()).toURI()), consultasMedica);
-        }else if (deletedConsulta instanceof ConsultaOdontologica) {
+        }
+        else if (deletedConsulta instanceof ConsultaOdontologica) {
+            Dentista dentista = ((ConsultaOdontologica) deletedConsulta).getDentista();
+            dentista.getAgenda().liberarHorario(deletedConsulta.getHorario());
+
             consultasOdontologica.remove(deletedConsulta);
             writer.writeValue(new File(ClassLoader.getSystemResource(ioProperties.consultaOdontologica()).toURI()), consultasOdontologica);
         }
-        return deletedConsulta;
 
+        return deletedConsulta;
     }
 
 }

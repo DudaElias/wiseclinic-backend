@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class DentistaServiceImpl implements DentistaService {
@@ -24,7 +23,7 @@ public class DentistaServiceImpl implements DentistaService {
     }
 
     @Override
-    public Map<LocalDateTime, Integer> getHorariosDisponiveis(String cro) throws Exception{
+    public List<LocalDateTime> getHorariosDisponiveis(String cro) throws Exception{
         return dentistaRepository.getHorariosDisponiveis(cro);
     }
 }

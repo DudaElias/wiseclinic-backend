@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 @Component
 @EnableConfigurationProperties(IOProperties.class)
@@ -37,7 +36,7 @@ public class DentistaIORepository implements DentistaRepository {
     }
 
     @Override
-    public Map<LocalDateTime, Integer> getHorariosDisponiveis(String cro) throws Exception{
+    public List<LocalDateTime> getHorariosDisponiveis(String cro) throws Exception{
         List<Dentista> dentistas = Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.dentista()), Dentista[].class));
         for(Dentista dentista : dentistas){
             if(dentista.getCro().equals(cro)){
