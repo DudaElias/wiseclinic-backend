@@ -46,10 +46,10 @@ public class DentistaIORepository implements DentistaRepository {
 
     @Override
     public void atualizarProfissional(Profissional profissional) throws Exception {
-        List<Dentista> dentistas = Arrays
+        List<Dentista> dentistas = new ArrayList<>(Arrays
                 .stream(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.dentista()), Dentista[].class))
-                .filter(dentista -> dentista.getCro() != ((Dentista) profissional).getCro())
-                .toList();
+                .filter(dentista -> !Objects.equals(dentista.getCro(), ((Dentista) profissional).getCro()))
+                .toList());
         dentistas.add(((Dentista) profissional));
 
         ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
