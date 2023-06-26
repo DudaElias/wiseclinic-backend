@@ -1,5 +1,7 @@
 package com.unicamp.wiseclinic.domain.especialidade;
 
+import java.util.Arrays;
+
 public enum EspecialidadeMedica implements Especialidade {
     ALERGOLOGIA(197),
     CARDIOLOGIA(200),
@@ -16,5 +18,13 @@ public enum EspecialidadeMedica implements Especialidade {
 
     public int getCod(){
         return cod;
+    }
+
+    @Override
+    public Especialidade getEspecialidadePorCod(int cod) throws Exception {
+        return Arrays.stream(EspecialidadeMedica.values())
+                .filter(e -> e.getCod() == cod)
+                .findFirst()
+                .orElseThrow(() -> new Exception());
     }
 }

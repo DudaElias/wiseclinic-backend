@@ -34,7 +34,8 @@ public class ConsultaController {
     @PostMapping(value = "/")
     ConsultaQuery criarConsulta(@RequestBody CriarConsultaCommand criarConsultaCommand){
         try {
-            return ConsultaQuery.toQuery(consultaService.criarConsulta(criarConsultaCommand));
+            return null;
+//            return ConsultaQuery.toQuery(consultaService.criarConsulta(criarConsultaCommand));
         }
         catch (Exception e) {
             throw new ResponseStatusException(
