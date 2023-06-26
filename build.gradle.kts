@@ -6,7 +6,9 @@ plugins {
 
 group = "com.unicamp"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_20
+
+val ENABLE_PREVIEW = "--enable-preview"
 
 repositories {
 	mavenCentral()
@@ -24,6 +26,11 @@ dependencies {
 	testImplementation("io.projectreactor:reactor-test")
 }
 
+tasks.withType<JavaCompile> {
+	options.compilerArgs.add(ENABLE_PREVIEW)
+}
+
 tasks.withType<Test> {
 	useJUnitPlatform()
+	jvmArgs(ENABLE_PREVIEW)
 }

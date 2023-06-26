@@ -1,4 +1,4 @@
-package com.unicamp.wiseclinic.domain.medico;
+package com.unicamp.wiseclinic.domain.profissional;
 
 import com.unicamp.wiseclinic.domain.agenda.Agenda;
 import com.unicamp.wiseclinic.domain.consulta.Consulta;
@@ -7,7 +7,7 @@ import com.unicamp.wiseclinic.domain.profissional.Profissional;
 
 import java.util.List;
 
-public class Medico extends Profissional{ 
+public final class Medico extends Profissional {
     private String crm;
     private List<EspecialidadeMedica> especialidades;
 
@@ -44,5 +44,10 @@ public class Medico extends Profissional{
     public boolean agendarConsulta(Consulta consulta){
         //TODO: IMPLEMENTAR METODO
         return true;
+    }
+
+    @Override
+    public boolean cancelarConsulta(int id) {
+        return false;
     }
 }

@@ -8,16 +8,24 @@ import com.unicamp.wiseclinic.domain.consulta.ConsultaMedica;
 import com.unicamp.wiseclinic.domain.consulta.ConsultaOdontologica;
 import com.unicamp.wiseclinic.domain.consulta.ConsultaRepository;
 
-import com.unicamp.wiseclinic.domain.dentista.Dentista;
-import com.unicamp.wiseclinic.domain.medico.Medico;
+import com.unicamp.wiseclinic.domain.especialidade.Especialidade;
+import com.unicamp.wiseclinic.domain.especialidade.EspecialidadeDentista;
+import com.unicamp.wiseclinic.domain.especialidade.EspecialidadeMedica;
+import com.unicamp.wiseclinic.domain.paciente.Paciente;
+import com.unicamp.wiseclinic.domain.profissional.Dentista;
+import com.unicamp.wiseclinic.domain.profissional.Medico;
+import com.unicamp.wiseclinic.domain.profissional.Profissional;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
+import java.util.UUID;
 
 @Component
 public class ConsultaIORepository implements ConsultaRepository {
@@ -30,8 +38,69 @@ public class ConsultaIORepository implements ConsultaRepository {
     }
 
     @Override
-    public void salvar(Consulta consulta) {
+    public Consulta salvar(UUID id, LocalDateTime horario, boolean checkIn, Profissional profissional,
+                           Especialidade especialidade, Paciente paciente) throws Exception {
+        return null;
+    }
 
+    private ConsultaOdontologica salvarConsultaOdontologica(
+        UUID id,
+        LocalDateTime horario,
+        boolean checkIn,
+        Dentista dentista,
+        EspecialidadeDentista especialidade,
+        Paciente paciente
+    ) throws Exception {
+        List<ConsultaOdontologica> consultasOdontologica = getConsultasOdontologicas();
+
+        ConsultaOdontologica consultaOdontologica = new ConsultaOdontologica(
+            dentista,
+            especialidade,
+            id,
+            paciente,
+            horario,
+            checkIn
+        );
+
+        consultasOdontologica.add(consultaOdontologica);
+
+        ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
+        writer.writeValue(
+            new File(ClassLoader.getSystemResource(ioProperties.consultaOdontologica()).toURI()),
+            consultasOdontologica
+        );
+
+        return consultaOdontologica;
+    }
+
+    private ConsultaMedica salvarConsultaMedica(
+        UUID id,
+        LocalDateTime horario,
+        boolean checkIn,
+        Medico medico,
+        EspecialidadeMedica especialidade,
+        Paciente paciente
+    ) throws Exception {
+        List<ConsultaMedica> consultasMedicas = getConsultasMedicas();
+
+        ConsultaMedica consultaMedica = new ConsultaMedica(
+            medico,
+            especialidade,
+            id,
+            paciente,
+            horario,
+            checkIn
+        );
+
+        consultasMedicas.add(consultaMedica);
+
+        ObjectWriter writer = objectMapper.writer(new DefaultPrettyPrinter());
+        writer.writeValue(
+            new File(ClassLoader.getSystemResource(ioProperties.consultaMedica()).toURI()),
+            consultasMedicas
+        );
+
+        return consultaMedica;
     }
 
     @Override
@@ -46,7 +115,7 @@ public class ConsultaIORepository implements ConsultaRepository {
     }
 
     @Override
-    public void checkInPaciente(int id) throws Exception {
+    public void checkInPaciente(UUID id) throws Exception {
         List<ConsultaMedica> consultasMedica = Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consultaMedica()), ConsultaMedica[].class));
         List<ConsultaOdontologica> consultasOdontologica = Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consultaOdontologica()), ConsultaOdontologica[].class));
         List<Consulta> consultas = Stream.concat(consultasMedica.stream(), consultasOdontologica.stream()).toList();
@@ -65,7 +134,7 @@ public class ConsultaIORepository implements ConsultaRepository {
     }
 
     @Override
-    public Consulta deleteConsulta(int id) throws Exception{
+    public Consulta deleteConsulta(UUID id) throws Exception{
         List<ConsultaMedica> consultasMedica = new ArrayList<>(Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consultaMedica()), ConsultaMedica[].class)));
         List<ConsultaOdontologica> consultasOdontologica = new ArrayList<>(Arrays.asList(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.consultaOdontologica()), ConsultaOdontologica[].class)));
         List<Consulta> consultas = Stream.concat(consultasMedica.stream(), consultasOdontologica.stream()).toList();
@@ -96,4 +165,17 @@ public class ConsultaIORepository implements ConsultaRepository {
         return deletedConsulta;
     }
 
+    private ArrayList<ConsultaOdontologica> getConsultasOdontologicas() throws Exception {
+        return new ArrayList<>(Arrays.asList(objectMapper.readValue(
+            ClasspathUtils.readFromClasspath(ioProperties.consultaOdontologica()),
+            ConsultaOdontologica[].class)
+        ));
+    }
+
+    private ArrayList<ConsultaMedica> getConsultasMedicas() throws Exception {
+        return new ArrayList<>(Arrays.asList(objectMapper.readValue(
+            ClasspathUtils.readFromClasspath(ioProperties.consultaMedica()),
+            ConsultaMedica[].class)
+        ));
+    }
 }

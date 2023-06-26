@@ -1,8 +1,9 @@
 package com.unicamp.wiseclinic.adapters.http;
 
 import com.unicamp.wiseclinic.application.especialidade.EspecialidadeService;
+import com.unicamp.wiseclinic.domain.especialidade.Area;
 import com.unicamp.wiseclinic.domain.especialidade.Especialidade;
-import com.unicamp.wiseclinic.domain.especialidade.exception.ReferenciaNotFoundException;
+import com.unicamp.wiseclinic.domain.especialidade.exception.EspecialidadeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,11 +25,11 @@ public class EspecialidadeController {
         this.especialidadeService = especialidadeService;
     }
 
-    @GetMapping(value = "/{especialidade}")
-    List<? extends Especialidade> getEspecialidades(@PathVariable("especialidade") String especialidade) {
+    @GetMapping(value = "/{area}")
+    List<? extends Especialidade> getEspecialidades(@PathVariable("area") Area area) {
         try {
-            return especialidadeService.getEspecialidadesPorReferencia(especialidade);
-        } catch (ReferenciaNotFoundException e) {
+            return especialidadeService.getEspecialidadesPorArea(area);
+        } catch (EspecialidadeNotFoundException e) {
             throw new ResponseStatusException(
                 HttpStatus.NOT_FOUND, e.getMessage(), e);
         }

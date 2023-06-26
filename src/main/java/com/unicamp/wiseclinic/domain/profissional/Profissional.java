@@ -6,8 +6,9 @@ import com.unicamp.wiseclinic.domain.gerenciadorConsulta.GerenciadorConsulta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-public abstract class Profissional implements GerenciadorConsulta {
+public abstract sealed class Profissional implements GerenciadorConsulta permits Dentista, Medico {
     private Agenda agenda;
     private String nome;
     private String cpf;
@@ -46,7 +47,7 @@ public abstract class Profissional implements GerenciadorConsulta {
 
     public abstract boolean agendarConsulta(Consulta consulta);
     
-    public boolean cancelarConsulta(int id) {
+    public boolean cancelarConsulta(UUID id) {
         return this.listaConsulta.removeIf(consulta -> {
             return consulta.getId() == id;
         });

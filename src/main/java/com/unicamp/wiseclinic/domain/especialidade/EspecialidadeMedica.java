@@ -8,8 +8,6 @@ public enum EspecialidadeMedica implements Especialidade {
     OFTALMOLOGIA(502),
     PEDIATRIA(707);
 
-    private static final String REFERENCIA = "MEDICINA";
-
     private final int cod;
 
     EspecialidadeMedica(int especialidade){
@@ -18,9 +16,5 @@ public enum EspecialidadeMedica implements Especialidade {
 
     public int getCod(){
         return cod;
-    }
-
-    public String getReferencia() {
-        return REFERENCIA;
     }
 }

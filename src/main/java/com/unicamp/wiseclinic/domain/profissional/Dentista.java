@@ -1,4 +1,4 @@
-package com.unicamp.wiseclinic.domain.dentista;
+package com.unicamp.wiseclinic.domain.profissional;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import com.unicamp.wiseclinic.domain.consulta.Consulta;
 import com.unicamp.wiseclinic.domain.especialidade.EspecialidadeDentista;
 import com.unicamp.wiseclinic.domain.profissional.Profissional;
 
-public class Dentista extends Profissional {
+public final class Dentista extends Profissional {
     private String cro;
     private List<EspecialidadeDentista> especialidades;
 
@@ -39,5 +39,10 @@ public class Dentista extends Profissional {
     public boolean agendarConsulta(Consulta consulta){
         //TODO: IMPLEMENTAR METODO
         return true;
+    }
+
+    @Override
+    public boolean cancelarConsulta(int id) {
+        return false;
     }
 }
