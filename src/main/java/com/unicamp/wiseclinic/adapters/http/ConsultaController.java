@@ -32,10 +32,9 @@ public class ConsultaController {
     }
 
     @PostMapping(value = "/")
-    ConsultaQuery criarConsulta(@RequestBody CriarConsultaCommand criarConsultaCommand){
+    ConsultaQuery criarConsulta(@RequestBody CriarConsultaCommand criarConsultaCommand) {
         try {
-            return null;
-//            return ConsultaQuery.toQuery(consultaService.criarConsulta(criarConsultaCommand));
+            return consultaService.criarConsulta(criarConsultaCommand);
         }
         catch (Exception e) {
             throw new ResponseStatusException(
@@ -44,7 +43,7 @@ public class ConsultaController {
     }
 
     @GetMapping(value = "/{dia}")
-    List<Consulta> getConsultasPorDia(@PathVariable("dia") LocalDate dia) {
+    List<ConsultaQuery> getConsultasPorDia(@PathVariable("dia") LocalDate dia) {
         try {
             return consultaService.getConsultasPorDia(dia);
         }
@@ -66,7 +65,7 @@ public class ConsultaController {
     }
     
     @DeleteMapping(value="/{id}")
-    Consulta deleteConsultaPorId(@PathVariable("id") UUID id) {
+    ConsultaQuery deleteConsultaPorId(@PathVariable("id") UUID id) {
         try {
             return consultaService.deleteConsulta(id);
         } catch (Exception e) {

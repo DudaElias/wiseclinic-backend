@@ -46,6 +46,8 @@ public abstract sealed class Profissional implements GerenciadorConsulta permits
     public Agenda getAgenda() { return agenda; }
 
     public abstract boolean agendarConsulta(Consulta consulta);
+
+    public abstract String getDoc();
     
     public boolean cancelarConsulta(UUID id) {
         return this.listaConsulta.removeIf(consulta -> {
