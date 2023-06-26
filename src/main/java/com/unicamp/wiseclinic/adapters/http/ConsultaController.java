@@ -51,8 +51,8 @@ public class ConsultaController {
                 HttpStatus.INTERNAL_SERVER_ERROR, "Ocorreu um erro interno, tente novamente.", e);
         }
     }
-
-    @RequestMapping(value="/delete/{id}", method={RequestMethod.DELETE, RequestMethod.GET})
+    
+    @DeleteMapping(value="/{id}")
     Consulta deleteConsultaPorId(@PathVariable("id") int id){
         try{
             return consultaService.deleteConsulta(id);
