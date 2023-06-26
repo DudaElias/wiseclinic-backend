@@ -77,7 +77,7 @@ public class MedicoIORepository implements MedicoRepository {
     @Override
     public List<? extends Profissional> getProfissionaisPorEspecialidade(Especialidade especialidade) throws Exception {
         return Arrays
-            .stream(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.dentista()), Medico[].class))
+            .stream(objectMapper.readValue(ClasspathUtils.readFromClasspath(ioProperties.medico()), Medico[].class))
             .filter(medico -> medico.getEspecialidades().contains(especialidade))
             .toList();
     }
