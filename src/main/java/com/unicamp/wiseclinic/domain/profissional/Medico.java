@@ -3,7 +3,6 @@ package com.unicamp.wiseclinic.domain.profissional;
 import com.unicamp.wiseclinic.domain.agenda.Agenda;
 import com.unicamp.wiseclinic.domain.consulta.Consulta;
 import com.unicamp.wiseclinic.domain.especialidade.EspecialidadeMedica;
-import com.unicamp.wiseclinic.domain.profissional.Profissional;
 
 import java.util.List;
 
@@ -42,8 +41,7 @@ public final class Medico extends Profissional {
     }
 
     public boolean agendarConsulta(Consulta consulta){
-        //TODO: IMPLEMENTAR METODO
-        return true;
+        return this.getListaConsulta().add(consulta);
     }
 
     @Override
