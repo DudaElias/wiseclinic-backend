@@ -1,11 +1,17 @@
 # wiseclinic-backend
 Projeto Final de Programação Orientada a Objetos Back-end
 
+O projeto consiste em um sistema de consultas de uma clínica médica/odontológica, em que é possível criar, listar e cancelar consultas.
+
+Para isso, foi criada uma API seguindo o padrão REST em Java utilizando o framework Spring Boot, que permite a criação de endpoints HTTP. A interface gráfica foi feita utilizando tecnologias como TypeScript e React para a composição das telas da aplicação.
+
+Abaixo, segue a estrutura de classes utilizada para o sistema:
+
 ### Diagrama de classe UML
 
 ```plantuml
 @startuml
-    scale 650 width
+    scale 700 width
     skinparam linetype ortho
     !theme sandstone
 
@@ -17,36 +23,21 @@ Projeto Final de Programação Orientada a Objetos Back-end
         - telefone: String
         - genero: String
         - dataNasc: LocalDate
-        - {field} convenio: Convenio
-        - listaConsulta: ArrayList
+        - convenio: Convenio
+        - listaConsulta: List<Consulta>
         + agendarConsulta(*)
         + cancelarConsulta(*)
         + gets/sets()
     }
 
-    interface Consulta{
+    class Consulta{
         -paciente: Paciente
-        -{field}horario: LocalDate
+        -horario: LocalDateTime
         -checkIn: boolean
-        -id: int
-        +trocarProfissional(*)
-        +trocarHorario(*)
-        +checkInPaciente(*)
-        +gets/sets()
-    }
-
-    class ConsultaMedica{
-        -medico: Medico
-        +trocarProfissional(*)
-        +trocarHorario(*)
-        +checkInPaciente(*)
-        +gets/sets()
-    }
-
-    class ConsultaOdontologica{
-        -dentista: Dentista
-        +trocarProfissional(*)
-        +trocarHorario(*)
+        -id: UUID
+        -especialidade: Especialidade
+        -area: Area
+        -profissional: Profissional
         +checkInPaciente(*)
         +gets/sets()
     }
@@ -56,8 +47,7 @@ Projeto Final de Programação Orientada a Objetos Back-end
         -nome: String
         -cpf: String
         -email: String
-        -listaConsulta: ArrayList
-        +atualizarAgenda(*)
+        -listaConsulta: List<Consulta>
         +agendarConsulta(*)
         +cancelarConsulta(*)
         +gets/sets()
@@ -65,21 +55,40 @@ Projeto Final de Programação Orientada a Objetos Back-end
 
     class Dentista{
         -cro: String
-        -especialidades: ArrayList
+        -especialidades: List<EspecialidadeDentista>
         +adicionarEspecialidade(*)
+        +agendarConsulta(*)
+        +cancelarConsulta(*)
         +gets/sets()
     }
 
     class Medico{
         -crm: String
-        -especialidades: ArrayList
+        -especialidades: List<EspecialidadeMedica>
         +adicionarEspecialidade(*)
+        +agendarConsulta(*)
+        +cancelarConsulta(*)
         +gets/sets()
     }
 
     class Agenda{
-        -{field} dias: List<List<Map<string, boolean>>>
-        +gets/sets()
+        -horariosOcupados: List<LocalDateTime>
+        +liberarHorario(*)
+        +ocuparHorario(*)
+        +isHorarioOcupado(*)
+        +filtrarHorario(*)
+        +gets()
+        
+    }
+
+    enum Area {
+        -MEDICINA
+        -ODONTOLOGIA
+    }
+
+    interface GerenciadorConsulta{
+        + agendarConsulta(*)
+        + cancelarConsulta(*)
     }
 
     enum Convenio{
@@ -90,6 +99,11 @@ Projeto Final de Programação Orientada a Objetos Back-end
         __
         nome: String
         chave: int
+    }
+
+    interface Especialidade {
+        +getCod(): int
+        +getEspecialidadePorCod(*): Especialidade
     }
 
     enum EspecialidadeMedica{
@@ -113,26 +127,32 @@ Projeto Final de Programação Orientada a Objetos Back-end
         codigo: int
     }
 
+
+
+
     Profissional <|-- Medico
     Profissional <|-- Dentista
 
-    Consulta <|.. ConsultaOdontologica
-    Consulta <|.. ConsultaMedica
+    Especialidade <|.. EspecialidadeMedica
+    Especialidade <|.. EspecialidadeDentista
 
-    Paciente --> "0..1 " Convenio
-    Paciente "0..* " *-->  ConsultaMedica
-    Paciente *---> "0..* " ConsultaOdontologica
+    Profissional ..|> GerenciadorConsulta
+    Paciente ..|> GerenciadorConsulta
 
-    Medico o---> "0..*  " ConsultaMedica
-    Dentista o--> " 0..*" ConsultaOdontologica
+    Paciente --> "0..1" Convenio
+    Paciente *--> "0..*"  Consulta
+    Paciente *--> "0..* " Consulta
+
+    Medico o--> "0..* " Consulta
+    Dentista o--> "0..*" Consulta
 
     Medico --> "1..*" EspecialidadeMedica
-    Dentista --> "1..*   " EspecialidadeDentista
+    Dentista --> "1..*" EspecialidadeDentista
 
-    
-    Profissional --> "1 " Agenda
+    Consulta --> Especialidade
 
-}
+    Consulta o--> "1" Area
+    Profissional o--> "1" Agenda
+
 @enduml
 ```
-

@@ -5,7 +5,6 @@ import java.util.List;
 import com.unicamp.wiseclinic.domain.agenda.Agenda;
 import com.unicamp.wiseclinic.domain.consulta.Consulta;
 import com.unicamp.wiseclinic.domain.especialidade.EspecialidadeDentista;
-import com.unicamp.wiseclinic.domain.profissional.Profissional;
 
 public final class Dentista extends Profissional {
     private String cro;
@@ -36,9 +35,8 @@ public final class Dentista extends Profissional {
         especialidades.add(especialidade);
     }
 
-    public boolean agendarConsulta(Consulta consulta){
-        //TODO: IMPLEMENTAR METODO
-        return true;
+    public boolean agendarConsulta(Consulta consulta) {
+        return this.getListaConsulta().add(consulta);
     }
 
     @Override
